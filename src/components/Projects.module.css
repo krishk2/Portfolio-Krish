@@ -1,0 +1,158 @@
+/* src/components/Projects.module.css */
+
+.sectionHeading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #F4F4F0;
+  margin-bottom: 48px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1px;
+  background: transparent;
+}
+
+.card {
+  background: #000;
+  padding: 32px;
+  cursor: default;
+  transition: background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.card:hover {
+  background: #080808;
+}
+
+.index {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #333;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 0;
+}
+
+.title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #F4F4F0;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #555;
+}
+
+.arrow {
+  font-size: 20px;
+  color: #555;
+  flex-shrink: 0;
+  transition: color 0.3s;
+}
+
+.card:hover .arrow {
+  color: #F4F4F0;
+}
+
+.expanded {
+  overflow: hidden;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #888;
+  padding-top: 16px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #111;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #555;
+  padding: 3px 8px;
+  border: 1px solid #1a1a1a;
+}
+
+.links {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.link,
+.linkLive {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 6px 14px;
+  transition: all 0.2s ease;
+}
+
+.link {
+  color: #888;
+  border: 1px solid #222;
+}
+
+.link:hover {
+  color: #F4F4F0;
+  border-color: #555;
+}
+
+.linkLive {
+  color: #000;
+  background: #F4F4F0;
+  border: 1px solid #F4F4F0;
+}
+
+.linkLive:hover {
+  background: transparent;
+  color: #F4F4F0;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

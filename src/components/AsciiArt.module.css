@@ -1,0 +1,31 @@
+/* src/components/AsciiArt.module.css */
+
+.wrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.ascii {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  color: #555;
+  white-space: pre;
+  user-select: none;
+  /* Edges fade into the black background */
+  -webkit-mask-image: radial-gradient(ellipse 85% 90% at 50% 50%, black 50%, transparent 100%);
+  mask-image: radial-gradient(ellipse 85% 90% at 50% 50%, black 50%, transparent 100%);
+}
+
+.line {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .wrapper {
+    display: none;
+  }
+}
