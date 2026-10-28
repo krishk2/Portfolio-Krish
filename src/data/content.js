@@ -5,7 +5,6 @@ export const personal = {
   name: "Krishna Koushik Padigala",
   tagline: "Multi-Agent Systems · LLM Applications · Computer Vision",
   email: "koushikpadigala2@gmail.com",
-
   linkedin: "https://www.linkedin.com/in/krishna-koushik-padigala-691728305/",
   github: "https://github.com/krishk2",
 };
@@ -58,6 +57,7 @@ export const projects = [
       "Multimodal AI agent designed as an external cognitive memory for Alzheimer's & Dementia patients. Integrates FaceNet and YOLOv8 for face and object recognition, Qdrant vector database for episodic memory retrieval, and Groq-hosted Llama-3 with Whisper for real-time contextual voice conversations.",
     tags: ["FastAPI", "React", "Qdrant", "Llama-3", "Groq", "YOLOv8", "FaceNet"],
     github: "https://github.com/krishk2/Masthishq",
+    demo: "https://drive.google.com/file/d/1sXt4R2UMOnmO0yUck7cl9stCuMtTe2Mk/view?usp=drive_link",
     live: "https://masthishq-frontend.onrender.com/",
   },
   {
@@ -67,6 +67,17 @@ export const projects = [
       "Autonomous sales intelligence agent built for the Hindsight Hackathon. Formulates contextual pre-meeting briefs from prior interactions, conducts post-call sentiment and action-item extraction with Groq LLM, drafts follow-up emails in Gmail, and continuously adapts to rep preferences through Hindsight's memory learning loop.",
     tags: ["FastAPI", "React", "Hindsight", "Groq LLM", "Gmail API", "Google Calendar"],
     github: "https://github.com/Pasalavijay799/meeting-prep-agent",
+    demo: "https://drive.google.com/file/d/1sXt4R2UMOnmO0yUck7cl9stCuMtTe2Mk/view?usp=drive_link",
+    live: null,
+  },
+  {
+    title: "FinAgentX",
+    subtitle: "AI-Powered Remote Banking System",
+    description:
+      "4-agent banking workflow automating loan application, data collection, financial verification, underwriting, and risk approval workflows.",
+    tags: ["CrewAI", "Node.js", "WebSockets", "Python", "Multi-Agent"],
+    github: "https://github.com/krishk2/FinAgentX/tree/main",
+    demo: "https://drive.google.com/file/d/1aWEQlgwh4NrwrSyISKLAJHhl3UfoKbm9/view?usp=sharing",
     live: null,
   },
   {
@@ -76,6 +87,7 @@ export const projects = [
       "Production-ready neural speech synthesis and zero-shot voice cloning platform featuring real-time audio visualization, dual-backend GPU acceleration via Google Colab & Hugging Face, and a production Docker deployment with MongoDB persistence and JWT authentication.",
     tags: ["Neural TTS", "Voice Cloning", "Hugging Face", "Docker", "MongoDB", "Audio AI"],
     github: "https://github.com/krishk2/VoiceLab--TTS-and-ASR",
+    demo: "https://voice-lab-gqcl.onrender.com",
     live: null,
   },
   {
@@ -85,6 +97,7 @@ export const projects = [
       "Comprehensive observability and management dashboard for IBM Quantum workflows (built for the Amaravati Quantum Valley Hackathon). Features real-time job execution tracking, predictive ML models for queue-time and error rate estimation, an interactive circuit composer, and local circuit simulation.",
     tags: ["IBM Quantum", "Qiskit", "Jupyter", "Machine Learning", "Quantum Computing"],
     github: "https://github.com/krishk2/quantusight",
+    demo: "https://quantu-sight-accelerated.onrender.com",
     live: null,
   },
   {
@@ -94,11 +107,9 @@ export const projects = [
       "Production NLP classification pipeline for enterprise corporate IT support inboxes. Automatically categorizes incoming service requests, complaints, and spam with 94% accuracy and 0.93 weighted F1-score, delivering sub-50ms CPU inference using a fine-tuned DistilBERT model deployed on Streamlit.",
     tags: ["DistilBERT", "PyTorch", "NLP", "Streamlit", "Hugging Face", "Scikit-Learn"],
     github: "https://github.com/krishk2/Enterprise-email-classifier",
+    demo: null,
     live: "https://enterprise-email-classifier.streamlit.app/",
   },
-];
-
-export const additionalProjects = [
   {
     title: "Veritas.AI",
     subtitle: "Multi-Agent Fact-Checking System",
@@ -106,15 +117,7 @@ export const additionalProjects = [
       "5-agent LLM framework for AI authenticity — performs claim extraction, evidence retrieval, credibility assessment, reasoning, and report generation integrating 10+ information sources.",
     tags: ["CrewAI", "LLM", "Multi-Agent", "Python"],
     github: "https://github.com/krishk2/Veritas.AI",
-    live: null,
-  },
-  {
-    title: "FinAgentX",
-    subtitle: "AI-Powered Remote Banking",
-    description:
-      "4-agent AI banking platform automating loan data collection, verification, underwriting, and approval workflows.",
-    tags: ["CrewAI", "Node.js", "WebSockets", "Python"],
-    github: "https://github.com/krishk2/FinAgentX",
+    demo: null,
     live: null,
   },
 ];

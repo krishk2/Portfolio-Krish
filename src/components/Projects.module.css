@@ -124,6 +124,7 @@
 }
 
 .link,
+.linkDemo,
 .linkLive {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 12px;
@@ -148,6 +149,17 @@
   background: #111;
 }
 
+.linkDemo {
+  color: #000;
+  background: #F4F4F0;
+  border: 1px solid #F4F4F0;
+}
+
+.linkDemo:hover {
+  background: transparent;
+  color: #F4F4F0;
+}
+
 .linkLive {
   color: #000;
   background: #F4F4F0;
@@ -157,6 +169,18 @@
 .linkLive:hover {
   background: transparent;
   color: #F4F4F0;
+}
+
+.linkDemo + .linkLive {
+  color: #F4F4F0;
+  background: transparent;
+  border: 1px solid #333;
+}
+
+.linkDemo + .linkLive:hover {
+  background: #161616;
+  border-color: #666;
+  color: #FFF;
 }
 
 @media (max-width: 600px) {

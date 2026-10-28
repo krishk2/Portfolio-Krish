@@ -76,8 +76,7 @@ export default function About() {
                 including Convolve 4.0 Pan-IIT.
               </p>
               <p className={styles.text} style={{ opacity: 0 }}>
-                My focus is on building agentic pipelines that are fast, reliable, and explainable —
-                across AWS, GCP, and Azure environments.
+                My focus is on building agentic pipelines that are fast, reliable, and explainable.
               </p>
             </div>
 

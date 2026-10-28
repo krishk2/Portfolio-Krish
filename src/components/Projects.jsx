@@ -122,6 +122,18 @@ function ProjectCard({ project, index }) {
               Source Code ↗
             </a>
           )}
+          {project.demo && (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.linkDemo}
+              onClick={(e) => e.stopPropagation()}
+              title="View Project Demo"
+            >
+              Demo ↗
+            </a>
+          )}
           {project.live && (
             <a
               href={project.live}
@@ -131,7 +143,7 @@ function ProjectCard({ project, index }) {
               onClick={(e) => e.stopPropagation()}
               title="View Live Application"
             >
-              Live Demo ↗
+              Live App ↗
             </a>
           )}
         </div>
