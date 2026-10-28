@@ -1,6 +1,6 @@
 // src/components/Accomplishments.jsx
-import { animate, createTimeline, stagger } from 'animejs';
-import { accomplishments } from '../data/content';
+import { animate } from 'animejs';
+import { accomplishments, certifications } from '../data/content';
 import { useAnimeOnView } from '../hooks/useAnimeOnView';
 import styles from './Accomplishments.module.css';
 
@@ -53,11 +53,51 @@ function AccomplishmentRow({ item, index }) {
   );
 }
 
+function CertificationCard({ cert, index }) {
+  const cardRef = useAnimeOnView(
+    (el) => {
+      animate(el, {
+        opacity: [0, 1],
+        translateY: [25, 0],
+        duration: 600,
+        delay: index * 70,
+        ease: 'out(3)',
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  return (
+    <a
+      ref={cardRef}
+      href={cert.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={styles.certCard}
+      style={{ opacity: 0 }}
+      title={`Verify ${cert.issuer} ${cert.title}`}
+    >
+      <div className={styles.certTop}>
+        <span className={styles.certIssuer}>{cert.issuer}</span>
+        <span className={styles.certArrow}>↗</span>
+      </div>
+      <h4 className={styles.certTitle}>{cert.title}</h4>
+      <div className={styles.certBottom}>
+        <span className={styles.certTag}>{cert.tag}</span>
+        <span className={styles.certVerify}>Verify Credential</span>
+      </div>
+    </a>
+  );
+}
+
 export default function Accomplishments() {
   const titleRef = useAnimeOnView((el) =>
     animate(el, { opacity: [0, 1], translateY: [10, 0], duration: 500, ease: 'out(3)' })
   );
   const headingRef = useAnimeOnView((el) =>
+    animate(el, { opacity: [0, 1], translateY: [20, 0], duration: 700, ease: 'out(4)' })
+  );
+  const certHeadingRef = useAnimeOnView((el) =>
     animate(el, { opacity: [0, 1], translateY: [20, 0], duration: 700, ease: 'out(4)' })
   );
 
@@ -70,6 +110,22 @@ export default function Accomplishments() {
           {accomplishments.map((item, i) => (
             <AccomplishmentRow key={i} item={item} index={i} />
           ))}
+        </div>
+
+        <div className={styles.certSection}>
+          <div className={styles.certHeader} ref={certHeadingRef} style={{ opacity: 0 }}>
+            <div>
+              <p className="section-label" style={{ marginBottom: 6 }}>Credentials</p>
+              <h3 className={styles.subheading}>Certifications</h3>
+            </div>
+            <span className={styles.certCount}>{certifications.length} Verified Credentials</span>
+          </div>
+
+          <div className={styles.certGrid}>
+            {certifications.map((cert, i) => (
+              <CertificationCard key={cert.title + cert.issuer} cert={cert} index={i} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,12 +1,11 @@
 // src/components/Navbar.jsx
 import { useEffect, useRef, useState } from 'react';
-import { animate, createTimeline, stagger } from 'animejs';
-import { personal } from '../data/content';
+import { animate, stagger } from 'animejs';
 import styles from './Navbar.module.css';
 
 const links = ['about', 'experience', 'projects', 'accomplishments', 'contact'];
 
-export default function Navbar() {
+export default function Navbar({ onReplayIntro }) {
   const navRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -57,13 +56,16 @@ export default function Navbar() {
   };
 
   const handleLinkHover = (i) => {
+    if (!linksRef.current[i]) return;
     animate(linksRef.current[i], {
       translateY: -2,
       duration: 200,
       ease: 'out(3)',
     });
   };
+
   const handleLinkLeave = (i) => {
+    if (!linksRef.current[i]) return;
     animate(linksRef.current[i], {
       translateY: 0,
       duration: 300,
@@ -92,6 +94,17 @@ export default function Navbar() {
               </button>
             </li>
           ))}
+          {onReplayIntro && (
+            <li>
+              <button
+                onClick={onReplayIntro}
+                className={styles.bootBtn}
+                title="Replay PC startup intro"
+              >
+                <span className={styles.bootDot}>●</span> Boot
+              </button>
+            </li>
+          )}
         </ul>
 
         <button className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)} aria-label="menu">
@@ -112,6 +125,17 @@ export default function Navbar() {
               {link}
             </button>
           ))}
+          {onReplayIntro && (
+            <button
+              className={styles.mobileBootBtn}
+              onClick={() => {
+                setMenuOpen(false);
+                onReplayIntro();
+              }}
+            >
+              Replay Startup Animation ⏻
+            </button>
+          )}
         </div>
       )}
     </nav>

@@ -12,31 +12,34 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1px;
+  gap: 20px;
   background: transparent;
 }
 
 .card {
-  background: #000;
+  background: #050505;
+  border: 1px solid #1a1a1a;
   padding: 32px;
-  cursor: default;
-  transition: background 0.3s ease;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  justify-content: space-between;
+  border-radius: 2px;
 }
 
 .card:hover {
-  background: #080808;
+  background: #0a0a0a;
+  border-color: #333333;
 }
 
 .index {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 11px;
   font-weight: 500;
-  color: #333;
+  color: #444;
   letter-spacing: 0.1em;
   display: block;
   margin-bottom: 20px;
@@ -62,22 +65,19 @@
 .subtitle {
   font-family: 'Inter', sans-serif;
   font-size: 13px;
-  color: #555;
+  color: #666;
+  line-height: 1.4;
 }
 
 .arrow {
   font-size: 20px;
   color: #555;
   flex-shrink: 0;
-  transition: color 0.3s;
+  transition: color 0.3s, transform 0.3s;
 }
 
 .card:hover .arrow {
   color: #F4F4F0;
-}
-
-.expanded {
-  overflow: hidden;
 }
 
 .description {
@@ -96,28 +96,31 @@
   flex-wrap: wrap;
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid #111;
+  border-top: 1px solid #141414;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  max-width: 60%;
 }
 
 .tag {
   font-family: 'Inter', sans-serif;
   font-size: 10px;
   letter-spacing: 0.08em;
-  color: #555;
+  color: #666;
   padding: 3px 8px;
   border: 1px solid #1a1a1a;
+  background: #000;
 }
 
 .links {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .link,
@@ -128,16 +131,21 @@
   letter-spacing: 0.05em;
   padding: 6px 14px;
   transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .link {
   color: #888;
   border: 1px solid #222;
+  background: transparent;
 }
 
 .link:hover {
   color: #F4F4F0;
   border-color: #555;
+  background: #111;
 }
 
 .linkLive {
@@ -154,5 +162,12 @@
 @media (max-width: 600px) {
   .grid {
     grid-template-columns: 1fr;
+  }
+  .tags {
+    max-width: 100%;
+  }
+  .links {
+    margin-left: 0;
+    width: 100%;
   }
 }

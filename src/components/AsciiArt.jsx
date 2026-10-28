@@ -1,130 +1,103 @@
 // src/components/AsciiArt.jsx
-// Converts a photo to ASCII art using Canvas API + animates with anime.js scramble
+// Displays ASCII art portrait with anime.js fade-in and cyber scramble reveal
 import { useEffect, useRef } from 'react';
 import { animate } from 'animejs';
-import heroImg from '../assets/photo.jpg';
+import asciiRaw from '../assets/ascii-image.txt?raw';
 import styles from './AsciiArt.module.css';
 
-// ASCII density ramp — dark pixels → dense chars, bright pixels → sparse
-const RAMP = '@#S%?*+;:,. ';
-
-// We'll calculate COLS dynamically to match the name height
-// Name is clamp(60px, 10vw, 130px) × 2 lines × 0.95 line-height ≈ name block height
-// We target the ASCII art width ≈ that height
-const TARGET_WIDTH_PX = 250; // approx name block height in px
-
-function imgToAscii(img, cols) {
-  const canvas = document.createElement('canvas');
-  const charAspect = 0.45; // mono chars are taller than wide
-  const aspect = img.naturalHeight / img.naturalWidth;
-  const rows = Math.round(cols * aspect * charAspect);
-
-  canvas.width = cols;
-  canvas.height = rows;
-
-  const ctx = canvas.getContext('2d');
-  ctx.filter = 'contrast(1.4) brightness(1.05)';
-  ctx.drawImage(img, 0, 0, cols, rows);
-
-  const data = ctx.getImageData(0, 0, cols, rows).data;
-  const lines = [];
-
-  for (let row = 0; row < rows; row++) {
-    let line = '';
-    for (let col = 0; col < cols; col++) {
-      const idx = (row * cols + col) * 4;
-      const r = data[idx], g = data[idx + 1], b = data[idx + 2];
-      const lum = 0.299 * r + 0.587 * g + 0.114 * b;
-      const charIdx = Math.floor((lum / 255) * (RAMP.length - 1));
-      line += RAMP[charIdx];
-    }
-    lines.push(line);
-  }
-  return lines;
-}
-
-const SCRAMBLE_CHARS = '@#%?*+;:,.abcdefghijklmnopqrstuvwxyz0123456789';
+const SCRAMBLE_CHARS = '0123456789*+=/#:;';
 function randomChar() {
   return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
 }
 
-export default function AsciiArt() {
+export default function AsciiArt({ isReady = true }) {
   const containerRef = useRef(null);
-  const imgRef = useRef(null);
 
   useEffect(() => {
-    const img = imgRef.current;
-    if (!img) return;
+    // Wait until startup intro is complete before starting scramble animation
+    if (!isReady) return;
 
-    const run = () => {
-      const container = containerRef.current;
-      if (!container) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-      // Calculate COLS so ASCII width ≈ name height
-      // Each mono char is roughly fontSize * 0.6 wide (Courier New)
-      // We use CSS font-size = 11px, so charWidth ≈ 11 * 0.6 = 6.6px
-      // letter-spacing 0.06em adds ~0.66px → ~7.26px per char
-      const CHAR_W = 7.0;
-      const COLS = Math.round(TARGET_WIDTH_PX / CHAR_W); // ~36 cols
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const lines = asciiRaw.split(/\r?\n/);
+    const activeSpans = [];
 
-      const lines = imgToAscii(img, COLS);
+    container.innerHTML = '';
+    const startTime = performance.now();
 
-      container.innerHTML = '';
-      const allSpans = [];
+    lines.forEach((line, r) => {
+      const lineDiv = document.createElement('div');
+      lineDiv.className = styles.line;
 
-      lines.forEach((line) => {
-        const lineDiv = document.createElement('div');
-        lineDiv.className = styles.line;
-        [...line].forEach((char) => {
+      for (let c = 0; c < line.length; c++) {
+        const char = line[c];
+        if (char === ' ') {
+          lineDiv.appendChild(document.createTextNode(' '));
+        } else {
           const span = document.createElement('span');
-          span.textContent = randomChar();
-          span.dataset.target = char;
+          if (prefersReducedMotion) {
+            span.textContent = char;
+          } else {
+            span.textContent = randomChar();
+            // Wave delay from top-left to bottom-right across full 3.0 seconds
+            const progress = (r / lines.length) * 0.65 + (c / line.length) * 0.35;
+            const resolveAt = startTime + 300 + progress * 2400 + Math.random() * 300;
+            activeSpans.push({
+              span,
+              target: char,
+              resolveAt,
+              done: false,
+            });
+          }
           lineDiv.appendChild(span);
-          allSpans.push(span);
-        });
-        container.appendChild(lineDiv);
-      });
+        }
+      }
+      container.appendChild(lineDiv);
+    });
 
-      // Fade in block
-      animate(container, { opacity: [0, 1], duration: 600, ease: 'out(3)' });
+    // Smooth fade in container
+    animate(container, { opacity: [0, 1], duration: 800, ease: 'out(3)' });
 
-      // Scramble → resolve, left-to-right cascade
-      allSpans.forEach((span, i) => {
-        const targetChar = span.dataset.target;
-        const delay = 300 + i * 4;
-        setTimeout(() => {
-          let ticks = 0;
-          const maxTicks = 6 + Math.floor(Math.random() * 8);
-          const interval = setInterval(() => {
-            ticks++;
-            if (ticks >= maxTicks) {
-              span.textContent = targetChar;
-              clearInterval(interval);
-            } else {
-              span.textContent = randomChar();
+    if (prefersReducedMotion || activeSpans.length === 0) return;
+
+    let rafId;
+    let lastTick = 0;
+
+    const tick = (now) => {
+      // Throttle character flickering to ~35ms for crisp terminal effect
+      if (now - lastTick > 35) {
+        lastTick = now;
+        let remaining = 0;
+        for (let i = 0; i < activeSpans.length; i++) {
+          const item = activeSpans[i];
+          if (item.done) continue;
+          if (now >= item.resolveAt) {
+            item.span.textContent = item.target;
+            item.done = true;
+          } else {
+            // Flicker subset per frame for high performance with 15k+ glyphs
+            if (Math.random() < 0.12) {
+              item.span.textContent = randomChar();
             }
-          }, 40);
-        }, delay);
-      });
+            remaining++;
+          }
+        }
+        if (remaining === 0) return;
+      }
+      rafId = requestAnimationFrame(tick);
     };
 
-    if (img.complete && img.naturalWidth > 0) {
-      run();
-    } else {
-      img.addEventListener('load', run, { once: true });
-    }
-  }, []);
+    rafId = requestAnimationFrame(tick);
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [isReady]);
 
   return (
     <div className={styles.wrapper}>
-      <img
-        ref={imgRef}
-        src={heroImg}
-        alt=""
-        aria-hidden="true"
-        style={{ display: 'none' }}
-        crossOrigin="anonymous"
-      />
       <pre
         ref={containerRef}
         className={styles.ascii}

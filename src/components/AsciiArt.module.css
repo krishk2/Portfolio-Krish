@@ -5,19 +5,20 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  max-width: 480px;
 }
 
 .ascii {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 11px;
-  line-height: 1.2;
-  letter-spacing: 0.06em;
-  color: #555;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: clamp(2.2px, 0.24vw, 3.1px);
+  line-height: 1.08;
+  letter-spacing: 0;
+  color: #8b92a5;
   white-space: pre;
   user-select: none;
-  /* Edges fade into the black background */
-  -webkit-mask-image: radial-gradient(ellipse 85% 90% at 50% 50%, black 50%, transparent 100%);
-  mask-image: radial-gradient(ellipse 85% 90% at 50% 50%, black 50%, transparent 100%);
+  /* Soft oval vignette so edges blend naturally into the dark canvas */
+  -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 46%, black 32%, transparent 78%);
+  mask-image: radial-gradient(ellipse 60% 55% at 50% 46%, black 32%, transparent 78%);
 }
 
 .line {

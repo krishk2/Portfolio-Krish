@@ -1,0 +1,145 @@
+/* src/components/StartupAnimation.module.css */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #020306;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+}
+
+.overlayHidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sceneWrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.camera {
+  width: 100vw;
+  height: 100vh;
+  max-width: 1400px;
+  max-height: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 37.5% 35.9%; /* Monitor screen center: (450px, 287.5px) / (1200, 800) */
+  transition: transform 1.5s cubic-bezier(0.75, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.cameraZoomed {
+  transform: scale(16);
+}
+
+.svgScene {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Skip & Hint Controls */
+.skipBtn {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  z-index: 10000;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  background: rgba(10, 12, 18, 0.75);
+  border: 1px solid #282c3c;
+  padding: 8px 16px;
+  border-radius: 4px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.skipBtn:hover {
+  color: #F4F4F0;
+  border-color: #00e5ff;
+  background: rgba(0, 229, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+}
+
+.skipBadge {
+  font-size: 9px;
+  background: #181a24;
+  color: #666;
+  padding: 2px 5px;
+  border-radius: 2px;
+  border: 1px solid #2a2e40;
+}
+
+.soundPrompt {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: #555;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  animation: pulsePrompt 2s infinite ease-in-out;
+}
+
+@keyframes pulsePrompt {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.9; color: #888; }
+}
+
+/* CRT Flash Effect */
+.crtFlash {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.crtFlashActive {
+  animation: crtBurst 0.4s ease-out forwards;
+}
+
+@keyframes crtBurst {
+  0% { opacity: 0.9; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0; }
+}
+
+/* Boot Terminal Text Styling */
+.bootText {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 8px;
+  fill: #00e5ff;
+  letter-spacing: 0.04em;
+  opacity: 0.95;
+}
+
+.bootPrompt {
+  fill: #10b981;
+  font-weight: bold;
+}

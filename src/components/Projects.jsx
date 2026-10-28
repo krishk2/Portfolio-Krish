@@ -14,9 +14,9 @@ function ProjectCard({ project, index }) {
     (el) => {
       animate(el, {
         opacity: [0, 1],
-        translateY: [50, 0],
+        translateY: [40, 0],
         duration: 700,
-        delay: index * 120,
+        delay: index * 100,
         ease: 'out(4)',
       });
     },
@@ -31,37 +31,50 @@ function ProjectCard({ project, index }) {
     [viewCallback]
   );
 
-  const handleEnter = () => {
+  const expand = () => {
     if (!descRef.current || isExpanded.current) return;
     isExpanded.current = true;
     const desc = descRef.current;
     const fullH = desc.scrollHeight + 16;
-    animate(desc, { height: [0, fullH], opacity: [0, 1], duration: 450, ease: 'out(4)' });
+    animate(desc, { height: [0, fullH], opacity: [0, 1], duration: 400, ease: 'out(4)' });
     const arrow = cardRef.current?.querySelector(`.${styles.arrow}`);
-    if (arrow) animate(arrow, { translateX: 5, translateY: -5, duration: 300, ease: 'out(3)' });
+    if (arrow) animate(arrow, { translateX: 4, translateY: -4, duration: 250, ease: 'out(3)' });
   };
 
-  const handleLeave = () => {
+  const collapse = () => {
     if (!descRef.current || !isExpanded.current) return;
     isExpanded.current = false;
     const desc = descRef.current;
-    animate(desc, { height: [desc.clientHeight, 0], opacity: [1, 0], duration: 350, ease: 'in(3)' });
+    animate(desc, { height: [desc.clientHeight, 0], opacity: [1, 0], duration: 300, ease: 'in(3)' });
     const arrow = cardRef.current?.querySelector(`.${styles.arrow}`);
-    if (arrow) animate(arrow, { translateX: 0, translateY: 0, duration: 300, ease: 'out(3)' });
+    if (arrow) animate(arrow, { translateX: 0, translateY: 0, duration: 250, ease: 'out(3)' });
+  };
+
+  const handleMouseEnter = () => {
+    expand();
+  };
+
+  const handleMouseLeave = () => {
+    collapse();
+    if (cardRef.current) animate(cardRef.current, { translateX: 0, translateY: 0, duration: 500, ease: 'out(3)' });
   };
 
   const handleMouseMove = (e) => {
     const card = cardRef.current;
     if (!card) return;
     const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) * 0.04;
-    const y = (e.clientY - rect.top - rect.height / 2) * 0.04;
-    animate(card, { translateX: x, translateY: y, duration: 400, ease: 'out(3)' });
+    const x = (e.clientX - rect.left - rect.width / 2) * 0.03;
+    const y = (e.clientY - rect.top - rect.height / 2) * 0.03;
+    animate(card, { translateX: x, translateY: y, duration: 350, ease: 'out(3)' });
   };
 
-  const handleMouseLeave = () => {
-    handleLeave();
-    if (cardRef.current) animate(cardRef.current, { translateX: 0, translateY: 0, duration: 600, ease: 'out(3)' });
+  const handleCardClick = (e) => {
+    if (e.target.closest('a')) return;
+    if (isExpanded.current) {
+      collapse();
+    } else {
+      expand();
+    }
   };
 
   return (
@@ -69,22 +82,25 @@ function ProjectCard({ project, index }) {
       ref={mergedRef}
       className={styles.card}
       style={{ opacity: 0 }}
-      onMouseEnter={handleEnter}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
+      onClick={handleCardClick}
     >
-      <span className={styles.index}>0{index + 1}</span>
+      <div>
+        <span className={styles.index}>{String(index + 1).padStart(2, '0')}</span>
 
-      <div className={styles.top}>
-        <div>
-          <h3 className={styles.title}>{project.title}</h3>
-          <p className={styles.subtitle}>{project.subtitle}</p>
+        <div className={styles.top}>
+          <div>
+            <h3 className={styles.title}>{project.title}</h3>
+            <p className={styles.subtitle}>{project.subtitle}</p>
+          </div>
+          <span className={styles.arrow}>↗</span>
         </div>
-        <span className={styles.arrow}>↗</span>
-      </div>
 
-      <div ref={descRef} style={{ height: 0, opacity: 0, overflow: 'hidden' }}>
-        <p className={styles.description}>{project.description}</p>
+        <div ref={descRef} style={{ height: 0, opacity: 0, overflow: 'hidden' }}>
+          <p className={styles.description}>{project.description}</p>
+        </div>
       </div>
 
       <div className={styles.footer}>
@@ -94,12 +110,28 @@ function ProjectCard({ project, index }) {
           ))}
         </div>
         <div className={styles.links}>
-          <a href={project.github} target="_blank" rel="noopener noreferrer" className={styles.link}>
-            GitHub ↗
-          </a>
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.link}
+              onClick={(e) => e.stopPropagation()}
+              title="View Source Code on GitHub"
+            >
+              Source Code ↗
+            </a>
+          )}
           {project.live && (
-            <a href={project.live} target="_blank" rel="noopener noreferrer" className={styles.linkLive}>
-              Live ↗
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.linkLive}
+              onClick={(e) => e.stopPropagation()}
+              title="View Live Application"
+            >
+              Live Demo ↗
             </a>
           )}
         </div>

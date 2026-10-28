@@ -1,82 +1,65 @@
 // src/components/Hero.jsx
 import { useEffect, useRef } from 'react';
-import { animate, createTimeline, stagger } from 'animejs';
+import { animate, createTimeline } from 'animejs';
 import { personal } from '../data/content';
 import AsciiArt from './AsciiArt';
 import styles from './Hero.module.css';
 
-export default function Hero() {
+export default function Hero({ isReady = true }) {
   const sectionRef = useRef(null);
   const line1Ref = useRef(null);
   const line2Ref = useRef(null);
+  const cursorRef = useRef(null);
   const greetRef = useRef(null);
   const taglineRef = useRef(null);
   const ctasRef = useRef(null);
   const scrollRef = useRef(null);
-  const cursorRef = useRef(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
+    if (!isReady) return;
 
-    // — Split name lines into individual character spans manually
-    const splitIntoChars = (el) => {
-      if (!el) return [];
-      const text = el.textContent;
-      el.innerHTML = '';
-      el.setAttribute('aria-label', text);
-      return [...text].map((char) => {
-        const span = document.createElement('span');
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        span.style.display = 'inline-block';
-        span.style.transform = 'translateY(110%)';
-        span.style.opacity = '0';
-        el.appendChild(span);
-        return span;
-      });
-    };
-
-    const chars1 = splitIntoChars(line1Ref.current);
-    const chars2 = splitIntoChars(line2Ref.current);
-
-    // — Greeting fade
-    if (greetRef.current) {
-      greetRef.current.style.opacity = '0';
-      greetRef.current.style.transform = 'translateX(-20px)';
-    }
-
-    // — Hide elements initially
-    [taglineRef.current, ctasRef.current, scrollRef.current].forEach((el) => {
-      if (el) { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; }
-    });
-
-    // — Master timeline
+    // ── Timeline: intro animation sequence
     const tl = createTimeline({ defaults: { ease: 'out(4)' } });
 
+    // 1. "Hey, I'm" fades in
     tl.add(greetRef.current, {
       opacity: [0, 1],
-      translateX: [-20, 0],
-      duration: 500,
-    }, 100)
-    .add(chars1, {
+      translateY: [16, 0],
+      duration: 600,
+    }, 200)
+
+    // 2. "Krishna" slides up with clip
+    .add(line1Ref.current, {
       translateY: ['110%', '0%'],
-      opacity: [0, 1],
-      duration: 700,
-      delay: stagger(28),
-    }, 300)
-    .add(chars2, {
+      duration: 900,
+      ease: 'out(5)',
+    }, 400)
+
+    // 3. "Koushik" follows closely
+    .add(line2Ref.current, {
       translateY: ['110%', '0%'],
+      duration: 900,
+      ease: 'out(5)',
+    }, 550)
+
+    // 4. Cursor fades in
+    .add(cursorRef.current, {
       opacity: [0, 1],
-      duration: 700,
-      delay: stagger(28),
-    }, 650)
+      duration: 200,
+    }, 900)
+
+    // 5. Tagline fades + drifts up
     .add(taglineRef.current, {
       opacity: [0, 1],
       translateY: [20, 0],
-      duration: 600,
-    }, 1100)
-    .add(ctasRef.current, {
+      duration: 700,
+    }, 1000)
+
+    // 6. CTAs
+    .add(ctasRef.current?.children ? Array.from(ctasRef.current.children) : [], {
       opacity: [0, 1],
-      translateY: [20, 0],
+      translateY: [16, 0],
+      delay: (_, i) => i * 100,
       duration: 600,
     }, 1300)
     .add(scrollRef.current, {
@@ -149,13 +132,13 @@ export default function Hero() {
           </div>
 
           {/* ── Right: ASCII portrait ── */}
-          <AsciiArt />
+          <AsciiArt isReady={isReady} />
         </div>
+      </div>
 
-        <div className={styles.scrollIndicator} ref={scrollRef} onClick={scrollDown}>
-          <span className={styles.scrollLine} id="hero-scroll-line" />
-          <span className={styles.scrollText}>scroll</span>
-        </div>
+      <div className={styles.scrollIndicator} ref={scrollRef} onClick={scrollDown}>
+        <span className={styles.scrollText}>scroll</span>
+        <span className={styles.scrollLine} id="hero-scroll-line" />
       </div>
 
       {/* Animated scroll line */}

@@ -20,13 +20,13 @@
   align-items: center;
   gap: 24px;
   padding: 28px 0;
-  border-bottom: 1px solid #111;
+  border-bottom: 1px solid #14161f;
   transition: background 0.2s;
   cursor: default;
 }
 
 .row:first-child {
-  border-top: 1px solid #111;
+  border-top: 1px solid #14161f;
 }
 
 .row:hover .rowTitle {
@@ -63,15 +63,157 @@
 .rowDetail {
   font-family: 'Inter', sans-serif;
   font-size: 13px;
-  color: #555;
+  color: #666;
 }
 
 .year {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 13px;
   font-weight: 500;
-  color: #333;
+  color: #444;
   flex-shrink: 0;
+}
+
+/* Certifications Sub-Section */
+.certSection {
+  margin-top: 72px;
+  padding-top: 48px;
+  border-top: 1px solid #14161f;
+}
+
+.certHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.subheading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 3.2vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #F4F4F0;
+  margin: 0;
+}
+
+.certCount {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.certGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.certCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #08090d;
+  border: 1px solid #181a24;
+  border-radius: 10px;
+  padding: 22px 20px;
+  text-decoration: none;
+  min-height: 154px;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.certCard:hover {
+  background: #0d0f17;
+  border-color: rgba(0, 229, 255, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.6), 0 0 20px -8px rgba(0, 229, 255, 0.15);
+}
+
+.certTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.certIssuer {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: #8b92a5;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 3px 9px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+.certArrow {
+  font-size: 16px;
+  color: #555;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.certCard:hover .certArrow {
+  color: #00e5ff;
+  transform: translate(2px, -2px);
+}
+
+.certTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #d8d8d8;
+  letter-spacing: -0.01em;
+  margin: 0 0 16px 0;
+  transition: color 0.2s ease;
+}
+
+.certCard:hover .certTitle {
+  color: #ffffff;
+}
+
+.certBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 12px;
+  margin-top: auto;
+}
+
+.certTag {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #666;
+}
+
+.certVerify {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #727a8e;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.certCard:hover .certVerify {
+  color: #00e5ff;
+}
+
+@media (max-width: 960px) {
+  .certGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
@@ -80,5 +222,12 @@
   }
   .year {
     display: none;
+  }
+  .certGrid {
+    grid-template-columns: 1fr;
+  }
+  .certSection {
+    margin-top: 48px;
+    padding-top: 36px;
   }
 }
