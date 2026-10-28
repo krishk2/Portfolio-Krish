@@ -4,21 +4,20 @@
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  max-width: 480px;
+  justify-content: center;
 }
 
 .ascii {
   font-family: 'Consolas', 'Courier New', monospace;
-  font-size: clamp(2.2px, 0.24vw, 3.1px);
+  font-size: clamp(4.2px, 0.44vw, 5.8px);
   line-height: 1.08;
   letter-spacing: 0;
   color: #8b92a5;
   white-space: pre;
   user-select: none;
   /* Soft oval vignette so edges blend naturally into the dark canvas */
-  -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 46%, black 32%, transparent 78%);
-  mask-image: radial-gradient(ellipse 60% 55% at 50% 46%, black 32%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 65% 60% at 50% 47%, black 36%, transparent 80%);
+  mask-image: radial-gradient(ellipse 65% 60% at 50% 47%, black 36%, transparent 80%);
 }
 
 .line {
