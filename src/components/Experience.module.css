@@ -7,7 +7,7 @@
 
 .card {
   display: flex;
-  gap: 24px;
+  gap: 20px;
 }
 
 .timeline {
@@ -32,11 +32,11 @@
   flex: 1;
   background: #1a1a1a;
   margin-top: 8px;
-  min-height: 40px;
+  min-height: 24px;
 }
 
 .body {
-  padding-bottom: 52px;
+  padding-bottom: 32px;
   flex: 1;
 }
 
@@ -44,8 +44,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: 14px;
+  margin-bottom: 12px;
   flex-wrap: wrap;
 }
 
@@ -55,7 +55,7 @@
   font-weight: 600;
   color: #F4F4F0;
   letter-spacing: -0.02em;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .role {
@@ -77,13 +77,13 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .bullet {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
-  line-height: 1.7;
+  line-height: 1.65;
   color: #888;
   padding-left: 16px;
   position: relative;
@@ -97,8 +97,12 @@
 }
 
 @media (max-width: 600px) {
+  .body {
+    padding-bottom: 24px;
+  }
   .header {
     flex-direction: column;
+    gap: 6px;
   }
   .duration {
     font-size: 11px;

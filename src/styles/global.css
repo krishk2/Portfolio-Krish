@@ -52,7 +52,7 @@ a {
 img { display: block; max-width: 100%; }
 
 section {
-  padding: 100px 0;
+  padding: 56px 0;
 }
 
 .container {
@@ -68,7 +68,7 @@ section {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gray);
-  margin-bottom: 48px;
+  margin-bottom: 24px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -90,13 +90,13 @@ h1, h2, h3, h4 {
 
 @media (max-width: 768px) {
   section {
-    padding: 60px 0;
+    padding: 36px 0;
   }
   .container {
     padding: 0 20px;
   }
   .section-label {
-    margin-bottom: 28px;
-    font-size: 10.5px;
+    margin-bottom: 16px;
+    font-size: 10px;
   }
 }

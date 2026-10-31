@@ -1,7 +1,7 @@
 /* src/components/Projects.module.css */
 
 .sectionHeader {
-  margin-bottom: 56px;
+  margin-bottom: 32px;
 }
 
 .sectionHeading {
@@ -21,8 +21,8 @@
 }
 
 .projectItem {
-  padding-bottom: 52px;
-  margin-bottom: 52px;
+  padding-bottom: 36px;
+  margin-bottom: 36px;
   border-bottom: 1px solid #141414;
   display: flex;
   flex-direction: column;

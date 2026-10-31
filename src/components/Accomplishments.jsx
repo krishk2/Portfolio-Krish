@@ -112,13 +112,15 @@ function AccomplishmentRow({ item, index, onOpenImage }) {
               onClick={() => onOpenImage(img, item.images, imgIdx)}
               title={`Click to view: ${img.label || 'Photo'}`}
             >
-              <img
-                src={img.src}
-                alt={img.alt || img.caption}
-                className={styles.thumbImage}
-                loading="lazy"
-              />
-              <div className={styles.imageOverlay}>
+              <div className={styles.thumbWrapper}>
+                <img
+                  src={img.src}
+                  alt={img.alt || img.caption}
+                  className={styles.thumbImage}
+                  loading="lazy"
+                />
+              </div>
+              <div className={styles.thumbBar}>
                 <span className={styles.imageLabel}>{img.label}</span>
                 <span className={styles.viewBadge}>🔍 View</span>
               </div>
@@ -160,32 +162,44 @@ function CertificationCard({ cert, index, onOpenImage }) {
       </div>
 
       {cert.image && (
-        <div className={styles.certImageContainer}>
+        <div
+          className={styles.certImageContainer}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (onOpenImage) onOpenImage(index);
+          }}
+          title={`Click to preview ${cert.title} Certificate`}
+        >
           <img
             src={cert.image}
             alt={`${cert.issuer} — ${cert.title} Certificate`}
             className={styles.certImage}
             loading="lazy"
           />
-          <button
-            type="button"
-            className={styles.certZoomBtn}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              if (onOpenImage) onOpenImage(index);
-            }}
-            title={`View full certificate for ${cert.title}`}
-          >
-            <span>🔍</span> View
-          </button>
+          <div className={styles.certHoverHint}>
+            <span>🔍 Preview</span>
+          </div>
         </div>
       )}
 
       <h4 className={styles.certTitle}>{cert.title}</h4>
       <div className={styles.certBottom}>
         <span className={styles.certTag}>{cert.tag}</span>
-        <span className={styles.certVerify}>Verify Credential</span>
+        <div className={styles.certActions}>
+          <span
+            className={styles.certPreviewBtn}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (onOpenImage) onOpenImage(index);
+            }}
+            title="Open Certificate Preview"
+          >
+            🔍 Preview
+          </span>
+          <span className={styles.certVerify}>Verify ↗</span>
+        </div>
       </div>
     </a>
   );

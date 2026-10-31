@@ -2,11 +2,11 @@
 
 .heading {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(28px, 4vw, 48px);
+  font-size: clamp(28px, 4vw, 44px);
   font-weight: 700;
   letter-spacing: -0.03em;
   color: #F4F4F0;
-  margin-bottom: 48px;
+  margin-bottom: 28px;
 }
 
 .list {
@@ -17,8 +17,8 @@
 .row {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding: 32px 0;
+  gap: 12px;
+  padding: 20px 0;
   border-bottom: 1px solid #14161f;
   transition: background 0.2s;
   cursor: default;
@@ -36,7 +36,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
   width: 100%;
   flex-wrap: wrap;
 }
@@ -44,7 +44,7 @@
 .rowLeft {
   display: flex;
   align-items: flex-start;
-  gap: 24px;
+  gap: 20px;
 }
 
 .num {
@@ -59,11 +59,11 @@
 
 .rowTitle {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(16px, 2vw, 21px);
+  font-size: clamp(16px, 2vw, 20px);
   font-weight: 600;
   color: #ccc;
   letter-spacing: -0.01em;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   transition: color 0.2s, transform 0.3s ease;
 }
 
@@ -133,34 +133,43 @@
   flex-shrink: 0;
 }
 
-/* Achievement Images Row */
+/* Achievement Images Row — Clean Meta Strip Below Photo (Zero Overlap) */
 .imagesRow {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
-  padding-left: 48px;
+  padding-left: 44px;
   margin-top: 4px;
 }
 
 .imageCard {
   position: relative;
-  height: 135px;
-  min-width: 170px;
-  max-width: 260px;
-  flex: 0 1 auto;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
-  border: 1px solid #222;
-  background: #080808;
+  border: 1px solid #1c1c1c;
+  background: #090909;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  min-width: 170px;
+  max-width: 250px;
+  flex: 0 1 auto;
 }
 
 .imageCard:hover {
-  border-color: #555;
+  border-color: #444;
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+}
+
+.thumbWrapper {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  background: #000;
 }
 
 .thumbImage {
@@ -168,52 +177,56 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.35s ease;
+  display: block;
 }
 
 .imageCard:hover .thumbImage {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
-.imageOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 30%, rgba(0, 0, 0, 0.88) 100%);
+.thumbBar {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  padding: 8px 10px;
-  pointer-events: none;
+  align-items: center;
+  padding: 6px 10px;
+  background: #0c0c0c;
+  border-top: 1px solid #181818;
+  gap: 8px;
 }
 
 .imageLabel {
   font-family: 'Space Grotesk', monospace;
   font-size: 9.5px;
   font-weight: 600;
-  color: #F4F4F0;
-  letter-spacing: 0.04em;
-  background: rgba(0, 0, 0, 0.65);
-  padding: 2px 6px;
-  border-radius: 2px;
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #aaa;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .viewBadge {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 600;
   color: #10b981;
-  background: rgba(16, 185, 129, 0.14);
-  border: 1px solid rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.28);
   padding: 2px 6px;
   border-radius: 2px;
-  backdrop-filter: blur(4px);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
 }
 
-/* Certifications Sub-Section */
+.imageCard:hover .viewBadge {
+  background: rgba(16, 185, 129, 0.22);
+  color: #34d399;
+}
+
+/* Certifications Sub-Section — Compact & Clean Spacing */
 .certSection {
-  margin-top: 72px;
-  padding-top: 48px;
+  margin-top: 40px;
+  padding-top: 28px;
   border-top: 1px solid #14161f;
 }
 
@@ -221,14 +234,14 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
   gap: 16px;
 }
 
 .subheading {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 3.2vw, 36px);
+  font-size: clamp(22px, 3vw, 32px);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: #F4F4F0;
@@ -249,13 +262,13 @@
 .certGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
+  gap: 14px;
 }
 
 .certCard {
   background: #050505;
   border: 1px solid #181818;
-  padding: 22px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -263,8 +276,7 @@
   transition: all 0.25s ease;
   position: relative;
   overflow: hidden;
-  border-radius: 2px;
-  min-height: 140px;
+  border-radius: 4px;
 }
 
 .certCard:hover {
@@ -280,19 +292,21 @@
   margin-bottom: 8px;
 }
 
+/* Certificate Image Container — Unobstructed, Zero Overlapping Buttons */
 .certImageContainer {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
-  max-height: 145px;
+  max-height: 140px;
   border-radius: 4px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: #080808;
-  margin: 8px 0 12px 0;
+  margin: 6px 0 10px 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: zoom-in;
 }
 
 .certImage {
@@ -308,38 +322,31 @@
   transform: scale(1.04);
 }
 
-.certZoomBtn {
+.certHoverHint {
   position: absolute;
-  bottom: 8px;
-  right: 8px;
+  top: 6px;
+  right: 6px;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  background: rgba(0, 0, 0, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: #F4F4F0;
+  gap: 3px;
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #eee;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 3px;
-  cursor: pointer;
-  backdrop-filter: blur(6px);
+  padding: 2px 7px;
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
   opacity: 0;
-  transform: translateY(4px);
+  transform: translateY(-2px);
   transition: all 0.2s ease;
-  z-index: 2;
+  pointer-events: none;
 }
 
-.certCard:hover .certZoomBtn {
+.certCard:hover .certHoverHint {
   opacity: 1;
   transform: translateY(0);
-}
-
-.certZoomBtn:hover {
-  background: rgba(20, 20, 20, 0.95);
-  border-color: #ffffff;
-  color: #ffffff;
 }
 
 .certIssuer {
@@ -368,7 +375,7 @@
   font-weight: 600;
   color: #eee;
   letter-spacing: -0.01em;
-  margin: 0 0 14px 0;
+  margin: 0 0 12px 0;
   line-height: 1.35;
 }
 
@@ -376,7 +383,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 12px;
+  padding-top: 10px;
   border-top: 1px solid #111;
 }
 
@@ -386,12 +393,39 @@
   color: #666;
 }
 
+.certActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.certPreviewBtn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  padding: 2px 7px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.certPreviewBtn:hover {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
 .certVerify {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 10px;
   font-weight: 600;
   color: #888;
   transition: color 0.2s ease;
+  cursor: pointer;
 }
 
 .certCard:hover .certVerify {
@@ -401,33 +435,26 @@
 @media (max-width: 768px) {
   .imagesRow {
     padding-left: 0;
-    gap: 12px;
+    gap: 10px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     width: 100%;
   }
 
   .imageCard {
-    height: 115px;
     width: 100%;
     min-width: 0;
     max-width: 100%;
   }
 
-  .imageOverlay {
-    opacity: 1;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
-  }
-
-  .viewBadge {
-    opacity: 1;
-    transform: translateY(0);
+  .thumbWrapper {
+    height: 100px;
   }
 
   .rowTop {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 10px;
   }
 
   .rowLeft {
@@ -443,15 +470,10 @@
 
   .certGrid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 12px;
   }
 
   .certCard {
-    padding: 18px 16px;
-  }
-
-  .certZoomBtn {
-    opacity: 1;
-    transform: translateY(0);
+    padding: 16px 14px;
   }
 }
