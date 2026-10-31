@@ -2,11 +2,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { animate } from 'animejs';
 import { projects } from '../data/content';
+import ImageLightbox from './ImageLightbox';
 import styles from './ProjectModal.module.css';
 
 export default function ProjectModal({ project, onClose }) {
   const [currentProject, setCurrentProject] = useState(project);
   const [isMediaLoading, setIsMediaLoading] = useState(true);
+  const [selectedLightboxImg, setSelectedLightboxImg] = useState(null);
   const overlayRef = useRef(null);
   const modalRef = useRef(null);
   const scrollBodyRef = useRef(null);
@@ -23,6 +25,7 @@ export default function ProjectModal({ project, onClose }) {
   // Handle escape key and arrow navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
+      if (selectedLightboxImg) return; // Lightbox handles its own escape
       if (e.key === 'Escape') {
         handleClose();
       } else if (e.key === 'ArrowRight') {
@@ -33,7 +36,7 @@ export default function ProjectModal({ project, onClose }) {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentProject]);
+  }, [currentProject, selectedLightboxImg]);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -284,6 +287,43 @@ export default function ProjectModal({ project, onClose }) {
               </div>
             )}
 
+            {/* Hackathon Recognition Images (Proof of Accomplishment) */}
+            {currentProject.achievementImages && currentProject.achievementImages.length > 0 && (
+              <div className={styles.sectionBlock}>
+                <div className={styles.sectionMeta}>
+                  <span className={styles.sectionLabel}>// HACKATHON STAGE & WINNING PROOF</span>
+                  <div className={styles.sectionDivider} />
+                </div>
+                <div className={styles.achievementImgsRow}>
+                  {currentProject.achievementImages.map((img, idx) => (
+                    <div
+                      key={img.src}
+                      className={styles.achievementImgCard}
+                      onClick={() =>
+                        setSelectedLightboxImg({
+                          image: img,
+                          list: currentProject.achievementImages,
+                          index: idx,
+                        })
+                      }
+                      title={`Click to view full photo: ${img.label || 'Achievement'}`}
+                    >
+                      <img
+                        src={img.src}
+                        alt={img.label}
+                        className={styles.achievementThumb}
+                        loading="lazy"
+                      />
+                      <div className={styles.achievementOverlay}>
+                        <span className={styles.achievementLabel}>{img.label}</span>
+                        <span className={styles.viewBadge}>🔍 View</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Technologies & Frameworks */}
             <div className={styles.sectionBlock}>
               <div className={styles.sectionMeta}>
@@ -388,6 +428,31 @@ export default function ProjectModal({ project, onClose }) {
           </div>
         </div>
       </div>
+
+      {selectedLightboxImg && (
+        <ImageLightbox
+          image={selectedLightboxImg.image}
+          onClose={() => setSelectedLightboxImg(null)}
+          onNext={() => {
+            const nextIdx = (selectedLightboxImg.index + 1) % selectedLightboxImg.list.length;
+            setSelectedLightboxImg({
+              image: selectedLightboxImg.list[nextIdx],
+              list: selectedLightboxImg.list,
+              index: nextIdx,
+            });
+          }}
+          onPrev={() => {
+            const prevIdx = (selectedLightboxImg.index - 1 + selectedLightboxImg.list.length) % selectedLightboxImg.list.length;
+            setSelectedLightboxImg({
+              image: selectedLightboxImg.list[prevIdx],
+              list: selectedLightboxImg.list,
+              index: prevIdx,
+            });
+          }}
+          hasNext={selectedLightboxImg.list.length > 1}
+          hasPrev={selectedLightboxImg.list.length > 1}
+        />
+      )}
     </div>
   );
 }

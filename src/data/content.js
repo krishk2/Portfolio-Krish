@@ -67,6 +67,18 @@ export const projects = [
       "Episodic memory recall via Qdrant vector search with temporal relevance scoring",
       "Awarded 1st Place at Convolve 4.0 Pan-IIT Hackathon (8,000+ teams)",
     ],
+    achievementImages: [
+      {
+        src: "/achievements/convolve.png",
+        label: "Stage Award",
+        caption: "Convolve 4.0 Pan-IIT Hackathon — 1st Place Award Ceremony on stage (Powered by Qdrant)",
+      },
+      {
+        src: "/achievements/convolve_glasses.png",
+        label: "Prize: Ray-Ban Meta",
+        caption: "Ray-Ban Meta Wayfarer Smart Glasses won as 1st Place Prize for Masthishq",
+      },
+    ],
     tags: ["FastAPI", "React", "Qdrant", "Llama-3", "Groq", "YOLOv8", "FaceNet"],
     github: "https://github.com/krishk2/Masthishq",
     video: "https://drive.google.com/file/d/1mq36FTSPY35Hbm681oE8DaL3NUPv87A6/preview",
@@ -163,6 +175,13 @@ export const projects = [
       "Visual quantum circuit composer with interactive statevector simulator",
       "Awarded Winner at the Amaravati Quantum Valley Hackathon",
     ],
+    achievementImages: [
+      {
+        src: "/achievements/quantum_valley.png",
+        label: "Winners Stage & Trophy",
+        caption: "Amaravati Quantum Valley Hackathon 2025 — Grand Finale Winners on stage with Trophy & ₹50,000 Cheque",
+      },
+    ],
     tags: ["IBM Quantum", "Qiskit", "Jupyter", "Machine Learning", "Quantum Computing"],
     github: "https://github.com/krishk2/quantusight",
     demo: "https://quantu-sight-accelerated.onrender.com",
@@ -225,18 +244,48 @@ export const accomplishments = [
     video: "https://drive.google.com/file/d/1mq36FTSPY35Hbm681oE8DaL3NUPv87A6/preview",
     folder: "https://drive.google.com/drive/u/4/folders/1MO1aNhguOguY9YpZB4rRInw50-J_40JM",
     projectTitle: "Masthishq",
+    images: [
+      {
+        src: "/achievements/convolve.png",
+        label: "Stage Award",
+        caption: "Convolve 4.0 Pan-IIT AI/ML Hackathon — 1st Place Award Ceremony on stage (Multi-Agent Systems Track, Powered by Qdrant)",
+        alt: "Convolve 4.0 Pan-IIT Hackathon Award Ceremony on stage",
+      },
+      {
+        src: "/achievements/convolve_glasses.png",
+        label: "Prize: Ray-Ban Meta",
+        caption: "Ray-Ban Meta Wayfarer Smart Glasses — 1st Place Prize won for Masthishq AI Assistant",
+        alt: "Ray-Ban Meta Smart Glasses Prize won at Convolve 4.0",
+      },
+    ],
   },
   {
     title: "Winner — Amaravati Quantum Valley Hackathon",
-    detail: "Built live job-tracking dashboard for IBM Quantum (QuantuSight)",
+    detail: "Built live job-tracking dashboard for IBM Quantum (QuantuSight) · ₹50,000 Prize",
     year: "2026",
     link: "https://quantu-sight-accelerated.onrender.com",
     projectTitle: "QuantuSight",
+    images: [
+      {
+        src: "/achievements/quantum_valley.png",
+        label: "Winners Stage & Trophy",
+        caption: "Amaravati Quantum Valley Hackathon 2025 — Grand Finale Winners on stage with Trophy, Medals & ₹50,000 Cheque (IBM Quantum)",
+        alt: "Amaravati Quantum Valley Hackathon 2025 Grand Finale Winners",
+      },
+    ],
   },
   {
     title: "Finalist — Paytm Build for India Hackathon",
-    detail: "Voice-enabled feature navigator · 4,000+ participants",
+    detail: "Voice-enabled feature navigator · 4,000+ participants nationwide",
     year: "2026",
+    images: [
+      {
+        src: "/achievements/paytm.jpg",
+        label: "Hackathon Deep Work",
+        caption: "Paytm Build for India Hackathon — Finalist team in deep work session building voice-enabled financial navigator at hackathon venue",
+        alt: "Paytm Build for India Hackathon Finalist Team Working",
+      },
+    ],
   },
 ];
 
