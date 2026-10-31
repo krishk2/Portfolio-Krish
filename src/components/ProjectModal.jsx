@@ -200,7 +200,6 @@ export default function ProjectModal({ project, onClose }) {
                   src={currentProject.video}
                   className={styles.iframe}
                   allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                  allowFullScreen
                   onLoad={() => setIsMediaLoading(false)}
                   title={`${currentProject.title} Video Recording`}
                 />

@@ -42,9 +42,28 @@ export default function Contact() {
         const data = await res.json();
         setDbContacts(data.contacts || []);
         setDbCount(data.count || 0);
+        try {
+          localStorage.setItem('portfolio_contacts', JSON.stringify(data.contacts || []));
+        } catch {}
+      } else {
+        // Fallback to localStorage if 404 or backend not attached
+        const cached = localStorage.getItem('portfolio_contacts');
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          setDbContacts(parsed);
+          setDbCount(parsed.length);
+        }
       }
     } catch {
       // Backend not running in static preview
+      try {
+        const cached = localStorage.getItem('portfolio_contacts');
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          setDbContacts(parsed);
+          setDbCount(parsed.length);
+        }
+      } catch {}
     } finally {
       setIsLoadingDb(false);
     }

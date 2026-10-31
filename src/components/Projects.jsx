@@ -1,5 +1,5 @@
 // src/components/Projects.jsx
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState } from 'react';
 import { animate } from 'animejs';
 import { projects } from '../data/content';
 import { useAnimeOnView } from '../hooks/useAnimeOnView';
@@ -7,6 +7,7 @@ import styles from './Projects.module.css';
 
 function ProjectItem({ project, index, onOpenProject }) {
   const itemRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const viewCallback = useAnimeOnView(
     (el) => {
@@ -79,25 +80,66 @@ function ProjectItem({ project, index, onOpenProject }) {
             <div className={styles.playerHeader}>
               <div className={styles.liveIndicator}>
                 <span className={styles.liveDot} />
-                <span className={styles.liveText}>DEMO STREAM</span>
+                <span className={styles.liveText}>
+                  {isPlaying ? 'STREAMING DEMO' : 'DEMO RECORDING'}
+                </span>
               </div>
-              <button
-                type="button"
-                className={styles.expandBtn}
-                onClick={() => onOpenProject(project)}
-                title="Expand to full focused modal view"
-              >
-                Expand Details ↗
-              </button>
+              <div className={styles.playerHeaderRight}>
+                {isPlaying && (
+                  <button
+                    type="button"
+                    className={styles.closePlayerBtn}
+                    onClick={() => setIsPlaying(false)}
+                    title="Stop inline video player"
+                  >
+                    ✕ Stop
+                  </button>
+                )}
+                <button
+                  type="button"
+                  className={styles.expandBtn}
+                  onClick={() => onOpenProject(project)}
+                  title="Expand to full focused modal view"
+                >
+                  Expand Details ↗
+                </button>
+              </div>
             </div>
-            <iframe
-              src={project.video}
-              className={styles.iframe}
-              allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-              title={`${project.title} Video Recording`}
-            />
+
+            {isPlaying ? (
+              <iframe
+                src={project.video}
+                className={styles.iframe}
+                allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                title={`${project.title} Video Recording`}
+              />
+            ) : (
+              <div
+                className={styles.videoPoster}
+                onClick={() => setIsPlaying(true)}
+                title={`Play video demo for ${project.title}`}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setIsPlaying(true);
+                  }
+                }}
+              >
+                <div className={styles.posterOverlay}>
+                  <div className={styles.playButtonWrap}>
+                    <div className={styles.playIconCircle}>
+                      <svg viewBox="0 0 24 24" fill="currentColor" className={styles.playSvg}>
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                    <span className={styles.playText}>Watch Video Demo</span>
+                    <span className={styles.playSubtext}>Click to stream demo inline</span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         ) : project.live ? (
           <div className={styles.liveBox}>

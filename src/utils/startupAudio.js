@@ -3,19 +3,42 @@
 // Zero external sound files needed — 100% reliable and instantaneous.
 
 let audioCtx = null;
+let userInteracted = false;
+
+// Track user gesture to comply with browser autoplay policies
+if (typeof window !== 'undefined') {
+  const onInteract = () => {
+    userInteracted = true;
+    window.removeEventListener('pointerdown', onInteract);
+    window.removeEventListener('keydown', onInteract);
+    window.removeEventListener('touchstart', onInteract);
+  };
+  window.addEventListener('pointerdown', onInteract, { capture: true, once: true });
+  window.addEventListener('keydown', onInteract, { capture: true, once: true });
+  window.addEventListener('touchstart', onInteract, { capture: true, once: true });
+}
 
 function getAudioContext() {
   if (typeof window === 'undefined') return null;
-  if (!audioCtx) {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (AudioContextClass) {
-      audioCtx = new AudioContextClass();
+
+  // Don't attempt to create or resume AudioContext without user gesture
+  // to avoid browser "The AudioContext was not allowed to start" warnings
+  if (!userInteracted) return null;
+
+  try {
+    if (!audioCtx) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (AudioContextClass) {
+        audioCtx = new AudioContextClass();
+      }
     }
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume().catch(() => {});
+    }
+    return audioCtx;
+  } catch {
+    return null;
   }
-  if (audioCtx && audioCtx.state === 'suspended') {
-    audioCtx.resume().catch(() => {});
-  }
-  return audioCtx;
 }
 
 export function playPowerClick() {
