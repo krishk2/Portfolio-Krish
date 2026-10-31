@@ -10,20 +10,24 @@ import Projects from './components/Projects';
 import Accomplishments from './components/Accomplishments';
 import Contact from './components/Contact';
 import StartupAnimation from './components/StartupAnimation';
-import VideoModal from './components/VideoModal';
+import ProjectModal from './components/ProjectModal';
 
 export default function App() {
   const [showStartup, setShowStartup] = useState(true);
-  const [activeVideoProject, setActiveVideoProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
-    const handleOpenVideo = (e) => {
+    const handleOpenProject = (e) => {
       if (e.detail) {
-        setActiveVideoProject(e.detail);
+        setSelectedProject(e.detail);
       }
     };
-    window.addEventListener('open-video', handleOpenVideo);
-    return () => window.removeEventListener('open-video', handleOpenVideo);
+    window.addEventListener('open-project', handleOpenProject);
+    window.addEventListener('open-video', handleOpenProject);
+    return () => {
+      window.removeEventListener('open-project', handleOpenProject);
+      window.removeEventListener('open-video', handleOpenProject);
+    };
   }, []);
 
   return (
@@ -37,15 +41,15 @@ export default function App() {
         <Hero isReady={!showStartup} />
         <About />
         <Experience />
-        <Projects onOpenVideo={setActiveVideoProject} />
+        <Projects onOpenProject={setSelectedProject} />
         <Accomplishments />
         <Contact />
       </main>
 
-      {activeVideoProject && (
-        <VideoModal
-          project={activeVideoProject}
-          onClose={() => setActiveVideoProject(null)}
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
         />
       )}
     </>

@@ -51,10 +51,21 @@ export const experience = [
 
 export const projects = [
   {
+    id: "masthishq",
     title: "Masthishq",
     subtitle: "AI Memory Assistant · Convolve 4.0 Winner",
+    summary:
+      "Multimodal AI agent designed as an external cognitive memory for Alzheimer's & Dementia patients using FaceNet, YOLOv8, Qdrant vector retrieval, and Groq-hosted Llama-3.",
     description:
       "Multimodal AI agent designed as an external cognitive memory for Alzheimer's & Dementia patients. Integrates FaceNet and YOLOv8 for face and object recognition, Qdrant vector database for episodic memory retrieval, and Groq-hosted Llama-3 with Whisper for real-time contextual voice conversations. Built by Team Twilight and awarded 1st Place at Convolve 4.0 Pan-IIT Hackathon.",
+    extendedDescription:
+      "Masthishq (meaning 'Brain') is a real-time multimodal assistive agent designed to act as an external cognitive prosthesis for Alzheimer's and Dementia patients. It integrates computer vision (FaceNet for face identification and YOLOv8 for familiar object recognition) with semantic vector recall via Qdrant. Context-aware voice interactions are processed in real-time through Groq-hosted Llama-3 and OpenAI Whisper, providing instantaneous, empathetic memory prompts without cognitive friction. Built by Team Twilight and awarded 1st Place at the Convolve 4.0 Pan-IIT Hackathon among 8,000+ competing teams.",
+    highlights: [
+      "Sub-2s voice query response latency powered by Groq LPU inference",
+      "95%+ face recognition accuracy using 512-dimensional FaceNet embeddings",
+      "Episodic memory recall via Qdrant vector search with temporal relevance scoring",
+      "Awarded 1st Place at Convolve 4.0 Pan-IIT Hackathon (8,000+ teams)",
+    ],
     tags: ["FastAPI", "React", "Qdrant", "Llama-3", "Groq", "YOLOv8", "FaceNet"],
     github: "https://github.com/krishk2/Masthishq",
     video: "https://drive.google.com/file/d/1mq36FTSPY35Hbm681oE8DaL3NUPv87A6/preview",
@@ -64,10 +75,21 @@ export const projects = [
     badge: "1st Place Convolve 4.0",
   },
   {
+    id: "meeting-prep",
     title: "Meeting Prep Agent",
     subtitle: "Autonomous Sales Memory & Executive Briefing",
+    summary:
+      "Autonomous sales intelligence agent generating contextual pre-meeting briefs, real-time sentiment extraction, and post-call email drafting with continuous learning.",
     description:
       "Autonomous sales intelligence agent built for the Hindsight Hackathon. Formulates contextual pre-meeting briefs from prior interactions, conducts post-call sentiment and action-item extraction with Groq LLM, drafts follow-up emails in Gmail, and continuously adapts to rep preferences through Hindsight's memory learning loop.",
+    extendedDescription:
+      "An autonomous sales enablement agent built for the Hindsight Hackathon. The system monitors sales reps' calendars, aggregates historical correspondence and previous CRM touchpoints, and synthesizes executive pre-meeting briefs before scheduled calls. Following meetings, it performs automated transcription sentiment analysis, action-item categorization using Groq LLM, and drafts personalized follow-up emails in Gmail while continuously adapting to rep communication preferences through Hindsight's bi-directional memory learning loop.",
+    highlights: [
+      "Autonomous pre-call briefing synthesized from multi-channel history",
+      "Automated action-item extraction & one-click Gmail drafting",
+      "Hindsight memory loop continuously learning rep writing style",
+      "Built for Hindsight Hackathon with FastAPI, Groq LLM, and React",
+    ],
     tags: ["FastAPI", "React", "Hindsight", "Groq LLM", "Gmail API", "Google Calendar"],
     github: "https://github.com/Pasalavijay799/meeting-prep-agent",
     video: "https://drive.google.com/file/d/1sXt4R2UMOnmO0yUck7cl9stCuMtTe2Mk/preview",
@@ -76,10 +98,21 @@ export const projects = [
     badge: "Hindsight Hackathon",
   },
   {
+    id: "finagentx",
     title: "FinAgentX",
     subtitle: "AI-Powered Remote Banking System",
+    summary:
+      "4-agent banking workflow automating loan application, data collection, financial verification, underwriting, and risk approval workflows.",
     description:
       "4-agent banking workflow automating loan application, data collection, financial verification, underwriting, and risk approval workflows.",
+    extendedDescription:
+      "FinAgentX is an autonomous multi-agent financial workflow platform designed to automate loan origination and risk assessment. Built with CrewAI, Python, and Node.js WebSockets, four specialized AI agents collaborate sequentially and in parallel: Data Collection Agent extracts applicant metadata; Financial Verification Agent audits bank statements and credit scores; Underwriting Agent assesses debt-to-income and solvency thresholds; and Risk Approval Agent generates formal compliance audit reports with full explainability.",
+    highlights: [
+      "4 specialized CrewAI agents with clear operational role separation",
+      "Real-time WebSocket streaming of agent deliberation and decision logs",
+      "Automated KYC, financial statement verification, and solvency checks",
+      "Explainable compliance scoring with audit-ready approval reports",
+    ],
     tags: ["CrewAI", "Node.js", "WebSockets", "Python", "Multi-Agent"],
     github: "https://github.com/krishk2/FinAgentX/tree/main",
     video: "https://drive.google.com/file/d/1aWEQlgwh4NrwrSyISKLAJHhl3UfoKbm9/preview",
@@ -88,10 +121,21 @@ export const projects = [
     badge: "Multi-Agent Architecture",
   },
   {
+    id: "voicelab",
     title: "VoiceLab: TTS & ASR",
     subtitle: "Neural Speech Synthesis & Zero-Shot Voice Cloning",
+    summary:
+      "Production-ready neural speech synthesis and zero-shot voice cloning platform featuring real-time audio visualization, dual GPU acceleration, and Docker deployment.",
     description:
       "Production-ready neural speech synthesis and zero-shot voice cloning platform featuring real-time audio visualization, dual-backend GPU acceleration via Google Colab & Hugging Face, and a production Docker deployment with MongoDB persistence and JWT authentication.",
+    extendedDescription:
+      "VoiceLab is a high-performance neural speech synthesis and zero-shot voice cloning platform engineered for rapid experimentation and production serving. Features real-time WebAudio waveform visualization, dual-backend GPU acceleration via Google Colab & Hugging Face Inference endpoints, and a containerized Docker deployment backed by MongoDB for user preset persistence and JWT-based session security.",
+    highlights: [
+      "Zero-shot neural voice cloning from under 5 seconds of sample audio",
+      "Real-time FFT audio visualizer with sub-second synthesis streaming",
+      "Dual-backend GPU acceleration bridging Colab & Hugging Face",
+      "Dockerized microservices architecture with MongoDB persistence",
+    ],
     tags: ["Neural TTS", "Voice Cloning", "Hugging Face", "Docker", "MongoDB", "Audio AI"],
     github: "https://github.com/krishk2/VoiceLab--TTS-and-ASR",
     demo: "https://voice-lab-gqcl.onrender.com",
@@ -99,10 +143,21 @@ export const projects = [
     badge: "Neural Speech Engine",
   },
   {
+    id: "quantusight",
     title: "QuantuSight",
     subtitle: "IBM Quantum Observability & Visual Circuit Composer",
+    summary:
+      "IBM Quantum observability dashboard and visual circuit composer featuring predictive ML for queue times and error-rate simulation.",
     description:
       "Comprehensive observability and management dashboard for IBM Quantum workflows (built for the Amaravati Quantum Valley Hackathon). Features real-time job execution tracking, predictive ML models for queue-time and error rate estimation, an interactive circuit composer, and local circuit simulation.",
+    extendedDescription:
+      "QuantuSight is an end-to-end quantum computing management and telemetry dashboard developed for the Amaravati Quantum Valley Hackathon (awarded Winner). It bridges the gap between quantum research and operational observability by tracking live job execution across IBM Quantum QPUs, utilizing predictive ML models to forecast queue waiting times and device error rates, and offering a visual quantum circuit composer with local statevector simulation.",
+    highlights: [
+      "Live IBM Quantum QPU telemetry and execution queue monitoring",
+      "Predictive ML models for calibration error and queue-time estimation",
+      "Visual quantum circuit composer with interactive statevector simulator",
+      "Awarded Winner at the Amaravati Quantum Valley Hackathon",
+    ],
     tags: ["IBM Quantum", "Qiskit", "Jupyter", "Machine Learning", "Quantum Computing"],
     github: "https://github.com/krishk2/quantusight",
     demo: "https://quantu-sight-accelerated.onrender.com",
@@ -110,10 +165,21 @@ export const projects = [
     badge: "Amaravati Hackathon Winner",
   },
   {
+    id: "email-classifier",
     title: "Enterprise Email Classifier",
     subtitle: "Automated IT Support Email Triage",
+    summary:
+      "Production NLP classification pipeline categorizing enterprise IT support requests with 94% accuracy and sub-50ms CPU inference using fine-tuned DistilBERT.",
     description:
       "Production NLP classification pipeline for enterprise corporate IT support inboxes. Automatically categorizes incoming service requests, complaints, and spam with 94% accuracy and 0.93 weighted F1-score, delivering sub-50ms CPU inference using a fine-tuned DistilBERT model deployed on Streamlit.",
+    extendedDescription:
+      "Developed during AI Internship at Infosys Springboard, this enterprise-grade NLP pipeline triages incoming corporate IT support email streams. Leveraging a fine-tuned DistilBERT model trained on multi-class support inboxes, the service categorizes service inquiries, network complaints, and spam with 94% accuracy and a 0.93 weighted F1-score, delivering sub-50ms CPU inference latency deployed on Streamlit.",
+    highlights: [
+      "94% classification accuracy & 0.93 weighted F1-score on enterprise data",
+      "Fine-tuned DistilBERT model achieving sub-50ms CPU inference latency",
+      "Automated ticket priority tagging and intelligent department routing",
+      "Production deployment on Streamlit Cloud with live interactive testbench",
+    ],
     tags: ["DistilBERT", "PyTorch", "NLP", "Streamlit", "Hugging Face", "Scikit-Learn"],
     github: "https://github.com/krishk2/Enterprise-email-classifier",
     demo: null,
@@ -121,10 +187,21 @@ export const projects = [
     badge: "Enterprise NLP",
   },
   {
+    id: "veritas",
     title: "Veritas.AI",
     subtitle: "Multi-Agent Fact-Checking System",
+    summary:
+      "5-agent LLM framework for AI authenticity, multi-source evidence retrieval, claim extraction, and explainable credibility reporting.",
     description:
       "5-agent LLM framework for AI authenticity — performs claim extraction, evidence retrieval, credibility assessment, reasoning, and report generation integrating 10+ information sources.",
+    extendedDescription:
+      "Veritas.AI is a decentralized multi-agent verification system designed to combat misinformation and evaluate the authenticity of digital claims. Operating through a 5-agent CrewAI pipeline, the system extracts claims from unstructured text, crawls and queries 10+ authoritative sources, conducts credibility cross-referencing, performs adversarial counter-argument verification, and generates a structured truthfulness report with cited evidence.",
+    highlights: [
+      "5-agent CrewAI orchestration: Extractor, Researcher, Verifier, Critic, Reporter",
+      "Multi-source evidence aggregation querying 10+ real-time knowledge bases",
+      "Adversarial verification testing claims against known disinformation patterns",
+      "Comprehensive authenticity score with full citation lineage",
+    ],
     tags: ["CrewAI", "LLM", "Multi-Agent", "Python"],
     github: "https://github.com/krishk2/Veritas.AI",
     demo: null,

@@ -42,7 +42,7 @@ function AccomplishmentRow({ item, index }) {
       driveFolder: item.folder,
       badge: "1st Place Convolve 4.0",
     };
-    window.dispatchEvent(new CustomEvent('open-video', { detail: targetProject }));
+    window.dispatchEvent(new CustomEvent('open-project', { detail: targetProject }));
   };
 
   return (

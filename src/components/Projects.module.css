@@ -26,12 +26,12 @@
   color: #000;
   background: #F4F4F0;
   border: 1px solid #F4F4F0;
-  padding: 8px 16px;
+  padding: 8px 18px;
   cursor: pointer;
   transition: all 0.25s ease;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   border-radius: 2px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
@@ -55,29 +55,30 @@
 }
 
 .card {
-  background: #050505;
+  background: #060606;
   border: 1px solid #1a1a1a;
-  padding: 32px;
+  padding: 30px;
   cursor: pointer;
-  transition: background 0.3s ease, border-color 0.3s ease;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 2px;
+  min-height: 290px;
 }
 
 .card:hover {
-  background: #0a0a0a;
-  border-color: #333333;
+  background: #0b0b0b;
+  border-color: #383838;
 }
 
 .metaRow {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   flex-wrap: wrap;
 }
 
@@ -85,7 +86,7 @@
   font-family: 'Space Grotesk', sans-serif;
   font-size: 11px;
   font-weight: 500;
-  color: #444;
+  color: #555;
   letter-spacing: 0.1em;
   display: inline-block;
 }
@@ -95,9 +96,9 @@
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.06em;
-  color: #888;
+  color: #999;
   background: #111;
-  border: 1px solid #222;
+  border: 1px solid #242424;
   padding: 2px 7px;
   border-radius: 2px;
 }
@@ -128,29 +129,30 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 12px;
-  margin-bottom: 0;
+  margin-bottom: 8px;
 }
 
 .title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: #F4F4F0;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
+  line-height: 1.2;
 }
 
 .subtitle {
   font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  color: #666;
+  font-size: 12.5px;
+  color: #777;
   line-height: 1.4;
 }
 
 .arrow {
-  color: #333;
+  color: #3a3a3a;
   font-size: 18px;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -162,9 +164,13 @@
 .description {
   font-family: 'Inter', sans-serif;
   font-size: 13px;
-  line-height: 1.7;
+  line-height: 1.65;
   color: #888;
-  padding-top: 16px;
+  margin-top: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .footer {
@@ -174,65 +180,61 @@
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 24px;
-  padding-top: 20px;
+  padding-top: 18px;
   border-top: 1px solid #141414;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  max-width: 55%;
+  gap: 5px;
+  max-width: 52%;
 }
 
 .tag {
   font-family: 'Inter', sans-serif;
   font-size: 10px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: #666;
-  padding: 3px 8px;
+  padding: 3px 7px;
   border: 1px solid #1a1a1a;
   background: #000;
+  border-radius: 2px;
+}
+
+.tagMore {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 9px;
+  color: #555;
+  padding: 3px 6px;
+  border: 1px dashed #222;
+  border-radius: 2px;
 }
 
 .links {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-shrink: 0;
   margin-left: auto;
   flex-wrap: wrap;
 }
 
-.link,
-.linkVideo,
-.linkDemo,
-.linkLive {
+.linkExplore,
+.linkLive,
+.link {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  padding: 6px 14px;
+  letter-spacing: 0.04em;
+  padding: 6px 12px;
   transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   border-radius: 2px;
 }
 
-.link {
-  color: #888;
-  border: 1px solid #222;
-  background: transparent;
-  text-decoration: none;
-}
-
-.link:hover {
-  color: #F4F4F0;
-  border-color: #555;
-  background: #111;
-}
-
-.linkVideo {
+.linkExplore {
   color: #000;
   background: #F4F4F0;
   border: 1px solid #F4F4F0;
@@ -240,52 +242,35 @@
   cursor: pointer;
 }
 
-.linkVideo:hover {
-  background: transparent;
-  color: #F4F4F0;
-}
-
-.playIcon {
-  font-size: 9px;
-  transform: translateY(-0.5px);
-}
-
-.linkDemo {
-  color: #000;
-  background: #F4F4F0;
-  border: 1px solid #F4F4F0;
-  text-decoration: none;
-}
-
-.linkDemo:hover {
+.linkExplore:hover {
   background: transparent;
   color: #F4F4F0;
 }
 
 .linkLive {
-  color: #000;
-  background: #F4F4F0;
-  border: 1px solid #F4F4F0;
+  color: #aaa;
+  background: transparent;
+  border: 1px solid #282828;
   text-decoration: none;
 }
 
 .linkLive:hover {
-  background: transparent;
   color: #F4F4F0;
+  border-color: #555;
+  background: #111;
 }
 
-.linkVideo + .linkLive,
-.linkDemo + .linkLive {
-  color: #F4F4F0;
+.link {
+  color: #777;
+  border: 1px solid #202020;
   background: transparent;
-  border: 1px solid #333;
+  text-decoration: none;
 }
 
-.linkVideo + .linkLive:hover,
-.linkDemo + .linkLive:hover {
-  background: #161616;
-  border-color: #666;
-  color: #FFF;
+.link:hover {
+  color: #ccc;
+  border-color: #444;
+  background: #0f0f0f;
 }
 
 @media (max-width: 600px) {

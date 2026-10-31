@@ -5,10 +5,8 @@ import { projects } from '../data/content';
 import { useAnimeOnView } from '../hooks/useAnimeOnView';
 import styles from './Projects.module.css';
 
-function ProjectCard({ project, index, onOpenVideo }) {
+function ProjectCard({ project, index, onOpenProject }) {
   const cardRef = useRef(null);
-  const descRef = useRef(null);
-  const isExpanded = useRef(false);
 
   const viewCallback = useAnimeOnView(
     (el) => {
@@ -16,7 +14,7 @@ function ProjectCard({ project, index, onOpenVideo }) {
         opacity: [0, 1],
         translateY: [40, 0],
         duration: 700,
-        delay: index * 100,
+        delay: index * 90,
         ease: 'out(4)',
       });
     },
@@ -31,32 +29,15 @@ function ProjectCard({ project, index, onOpenVideo }) {
     [viewCallback]
   );
 
-  const expand = () => {
-    if (!descRef.current || isExpanded.current) return;
-    isExpanded.current = true;
-    const desc = descRef.current;
-    const fullH = desc.scrollHeight + 16;
-    animate(desc, { height: [0, fullH], opacity: [0, 1], duration: 400, ease: 'out(4)' });
+  const handleMouseEnter = () => {
     const arrow = cardRef.current?.querySelector(`.${styles.arrow}`);
     if (arrow) animate(arrow, { translateX: 4, translateY: -4, duration: 250, ease: 'out(3)' });
   };
 
-  const collapse = () => {
-    if (!descRef.current || !isExpanded.current) return;
-    isExpanded.current = false;
-    const desc = descRef.current;
-    animate(desc, { height: [desc.clientHeight, 0], opacity: [1, 0], duration: 300, ease: 'in(3)' });
+  const handleMouseLeave = () => {
+    if (cardRef.current) animate(cardRef.current, { translateX: 0, translateY: 0, duration: 500, ease: 'out(3)' });
     const arrow = cardRef.current?.querySelector(`.${styles.arrow}`);
     if (arrow) animate(arrow, { translateX: 0, translateY: 0, duration: 250, ease: 'out(3)' });
-  };
-
-  const handleMouseEnter = () => {
-    expand();
-  };
-
-  const handleMouseLeave = () => {
-    collapse();
-    if (cardRef.current) animate(cardRef.current, { translateX: 0, translateY: 0, duration: 500, ease: 'out(3)' });
   };
 
   const handleMouseMove = (e) => {
@@ -69,12 +50,8 @@ function ProjectCard({ project, index, onOpenVideo }) {
   };
 
   const handleCardClick = (e) => {
-    if (e.target.closest('a') || e.target.closest('button')) return;
-    if (isExpanded.current) {
-      collapse();
-    } else {
-      expand();
-    }
+    if (e.target.closest('a')) return;
+    onOpenProject(project);
   };
 
   return (
@@ -86,6 +63,7 @@ function ProjectCard({ project, index, onOpenVideo }) {
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
       onClick={handleCardClick}
+      title={`Click to view ${project.title} video & extended details`}
     >
       <div>
         <div className={styles.metaRow}>
@@ -106,46 +84,32 @@ function ProjectCard({ project, index, onOpenVideo }) {
           <span className={styles.arrow}>↗</span>
         </div>
 
-        <div ref={descRef} style={{ height: 0, opacity: 0, overflow: 'hidden' }}>
-          <p className={styles.description}>{project.description}</p>
-        </div>
+        <p className={styles.description}>
+          {project.summary || project.description}
+        </p>
       </div>
 
       <div className={styles.footer}>
         <div className={styles.tags}>
-          {project.tags.map((tag) => (
+          {project.tags.slice(0, 5).map((tag) => (
             <span key={tag} className={styles.tag}>{tag}</span>
           ))}
+          {project.tags.length > 5 && (
+            <span className={styles.tagMore}>+{project.tags.length - 5}</span>
+          )}
         </div>
         <div className={styles.links}>
-          {project.video && (
-            <button
-              type="button"
-              className={styles.linkVideo}
-              onClick={(e) => {
-                e.stopPropagation();
-                if (onOpenVideo) onOpenVideo(project);
-                else {
-                  window.dispatchEvent(new CustomEvent('open-video', { detail: project }));
-                }
-              }}
-              title={`Watch ${project.title} Video Demo in website player`}
-            >
-              <span className={styles.playIcon}>▶</span> Watch Demo
-            </button>
-          )}
-          {project.demo && !project.video && (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.linkDemo}
-              onClick={(e) => e.stopPropagation()}
-              title="View Project Demo"
-            >
-              Demo ↗
-            </a>
-          )}
+          <button
+            type="button"
+            className={styles.linkExplore}
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpenProject(project);
+            }}
+            title={`Open focused modal for ${project.title}`}
+          >
+            {project.video ? '▶ Watch & Details ↗' : 'View Project ↗'}
+          </button>
           {project.live && (
             <a
               href={project.live}
@@ -167,7 +131,7 @@ function ProjectCard({ project, index, onOpenVideo }) {
               onClick={(e) => e.stopPropagation()}
               title="View Source Code on GitHub"
             >
-              Source Code ↗
+              Code ↗
             </a>
           )}
         </div>
@@ -176,7 +140,7 @@ function ProjectCard({ project, index, onOpenVideo }) {
   );
 }
 
-export default function Projects({ onOpenVideo }) {
+export default function Projects({ onOpenProject }) {
   const titleRef = useAnimeOnView((el) =>
     animate(el, { opacity: [0, 1], translateY: [20, 0], duration: 600, ease: 'out(4)' })
   );
@@ -184,10 +148,10 @@ export default function Projects({ onOpenVideo }) {
     animate(el, { opacity: [0, 1], translateY: [25, 0], duration: 700, ease: 'out(4)' })
   );
 
-  const handleWatchAll = () => {
-    const firstVideo = projects.find((p) => p.video) || projects[0];
-    if (onOpenVideo) onOpenVideo(firstVideo);
-    else window.dispatchEvent(new CustomEvent('open-video', { detail: firstVideo }));
+  const handleOpenFirst = () => {
+    const target = projects.find((p) => p.video) || projects[0];
+    if (onOpenProject) onOpenProject(target);
+    else window.dispatchEvent(new CustomEvent('open-project', { detail: target }));
   };
 
   return (
@@ -203,10 +167,10 @@ export default function Projects({ onOpenVideo }) {
           <button
             type="button"
             className={styles.watchAllBtn}
-            onClick={handleWatchAll}
-            title="Open in-website video player to watch all project demos"
+            onClick={handleOpenFirst}
+            title="Open focused modal to explore all projects and videos"
           >
-            <span className={styles.playIconHeader}>▶</span> Watch Video Demos
+            <span className={styles.playIconHeader}>▶</span> Explore All Projects & Demos
           </button>
         </div>
 
@@ -216,7 +180,10 @@ export default function Projects({ onOpenVideo }) {
               key={project.title}
               project={project}
               index={i}
-              onOpenVideo={onOpenVideo}
+              onOpenProject={(p) => {
+                if (onOpenProject) onOpenProject(p);
+                else window.dispatchEvent(new CustomEvent('open-project', { detail: p }));
+              }}
             />
           ))}
         </div>
