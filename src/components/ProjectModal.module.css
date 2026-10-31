@@ -760,31 +760,54 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .overlay {
-    padding: 10px;
+    padding: 6px;
+  }
+  .modal {
+    max-height: 96vh;
+    border-radius: 4px;
   }
   .header {
-    padding: 14px 16px;
+    padding: 12px 14px;
+    gap: 8px;
+  }
+  .title {
+    font-size: 18px;
+  }
+  .subtitle {
+    font-size: 11.5px;
   }
   .headerActions {
     width: 100%;
     margin-left: 0;
     justify-content: flex-end;
+    gap: 8px;
+  }
+  .kbd {
+    display: none;
   }
   .detailsContent {
-    padding: 24px 18px 32px;
-    gap: 24px;
+    padding: 18px 14px 28px;
+    gap: 20px;
   }
   .highlightsGrid {
     grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .achievementImagesGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .achievementImgCard {
+    height: 140px;
   }
   .footer {
-    padding: 12px 14px;
+    padding: 10px 12px;
   }
   .footerNav {
     width: 100%;
     justify-content: space-between;
   }
   .switcherList {
-    width: 100%;
+    display: none;
   }
 }

@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .ascii {
@@ -15,6 +16,8 @@
   color: #8b92a5;
   white-space: pre;
   user-select: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
   /* Soft oval vignette so edges blend naturally into the dark canvas */
   -webkit-mask-image: radial-gradient(ellipse 65% 60% at 50% 47%, black 36%, transparent 80%);
   mask-image: radial-gradient(ellipse 65% 60% at 50% 47%, black 36%, transparent 80%);
@@ -24,8 +27,32 @@
   display: block;
 }
 
+/* Tablet & Mobile Screens: keep portrait centered, scaled cleanly, and visible */
 @media (max-width: 900px) {
   .wrapper {
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    margin: 12px 0 20px 0;
+    overflow: hidden;
+  }
+
+  .ascii {
+    font-size: clamp(2.4px, 0.72vw + 0.6px, 3.8px);
+    line-height: 1.06;
+  }
+}
+
+/* Compact Mobile Devices */
+@media (max-width: 480px) {
+  .wrapper {
+    margin: 8px 0 16px 0;
+  }
+
+  .ascii {
+    font-size: clamp(2.0px, 0.68vw + 0.4px, 2.9px);
+    line-height: 1.05;
   }
 }

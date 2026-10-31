@@ -143,3 +143,18 @@
   fill: #10b981;
   font-weight: bold;
 }
+
+@media (max-width: 768px) {
+  .skipBtn {
+    top: 16px;
+    right: 16px;
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+  .soundPrompt {
+    bottom: 16px;
+    font-size: 10px;
+    width: 90%;
+    text-align: center;
+  }
+}

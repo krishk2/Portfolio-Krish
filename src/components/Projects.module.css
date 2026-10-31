@@ -492,18 +492,64 @@
 }
 
 @media (max-width: 768px) {
+  .projectItem {
+    padding-bottom: 36px;
+    margin-bottom: 36px;
+  }
   .headerRow {
     flex-direction: column;
     gap: 6px;
   }
+  .projectTitle {
+    font-size: clamp(20px, 5.5vw, 26px);
+  }
+  .year {
+    font-size: 13px;
+  }
+  .pitchRow {
+    font-size: 14px;
+    line-height: 1.6;
+  }
   .mediaFrame {
     max-width: 100%;
+    border-radius: 8px;
+  }
+  .playIconCircle {
+    width: 44px;
+    height: 44px;
+  }
+  .playSvg {
+    width: 17px;
+    height: 17px;
+  }
+  .playText {
+    font-size: 12px;
+  }
+  .playSubtext {
+    font-size: 10px;
+  }
+  .liveBox, .repoBox {
+    padding: 24px 16px;
+  }
+  .liveBoxTitle {
+    font-size: 17px;
   }
   .tagsRow {
     gap: 6px;
+    margin-bottom: 16px;
   }
   .pillTag {
     font-size: 11px;
     padding: 4px 10px;
+  }
+  .quickLinksRow {
+    gap: 8px;
+  }
+  .linkAction {
+    font-size: 11.5px;
+    padding: 4px 10px;
+    border: 1px solid #222;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.03);
   }
 }

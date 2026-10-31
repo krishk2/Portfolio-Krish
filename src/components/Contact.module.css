@@ -733,7 +733,21 @@
     grid-template-columns: 1fr;
   }
   .formCard {
-    padding: 24px 18px;
+    padding: 22px 16px;
+  }
+  .btnRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .submitBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
   }
   .modalContent {
     max-height: 90vh;

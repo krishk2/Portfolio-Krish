@@ -170,6 +170,20 @@
 }
 
 @media (max-width: 768px) {
+  .inner {
+    padding: 0 20px;
+  }
   .links { display: none; }
   .hamburger { display: flex; }
+  .mobile {
+    padding: 0 20px;
+  }
+  .mobileLink {
+    font-size: 19px;
+    padding: 16px 0;
+  }
+  .mobileBootBtn {
+    font-size: 13px;
+    padding: 16px 0;
+  }
 }
