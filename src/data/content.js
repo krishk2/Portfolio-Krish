@@ -52,6 +52,7 @@ export const experience = [
 export const projects = [
   {
     id: "masthishq",
+    year: "2026",
     title: "Masthishq",
     subtitle: "AI Memory Assistant · Convolve 4.0 Winner",
     summary:
@@ -76,6 +77,7 @@ export const projects = [
   },
   {
     id: "meeting-prep",
+    year: "2026",
     title: "Meeting Prep Agent",
     subtitle: "Autonomous Sales Memory & Executive Briefing",
     summary:
@@ -99,6 +101,7 @@ export const projects = [
   },
   {
     id: "finagentx",
+    year: "2026",
     title: "FinAgentX",
     subtitle: "AI-Powered Remote Banking System",
     summary:
@@ -122,6 +125,7 @@ export const projects = [
   },
   {
     id: "voicelab",
+    year: "2026",
     title: "VoiceLab: TTS & ASR",
     subtitle: "Neural Speech Synthesis & Zero-Shot Voice Cloning",
     summary:
@@ -144,6 +148,7 @@ export const projects = [
   },
   {
     id: "quantusight",
+    year: "2026",
     title: "QuantuSight",
     subtitle: "IBM Quantum Observability & Visual Circuit Composer",
     summary:
@@ -166,6 +171,7 @@ export const projects = [
   },
   {
     id: "email-classifier",
+    year: "2026",
     title: "Enterprise Email Classifier",
     subtitle: "Automated IT Support Email Triage",
     summary:
@@ -188,6 +194,7 @@ export const projects = [
   },
   {
     id: "veritas",
+    year: "2026",
     title: "Veritas.AI",
     subtitle: "Multi-Agent Fact-Checking System",
     summary:
