@@ -139,6 +139,17 @@ const server = http.createServer((req, res) => {
     }
     const ext = path.extname(filePath).toLowerCase();
     res.setHeader('Content-Type', MIME_TYPES[ext] || 'application/octet-stream');
+
+    // Never cache index.html so updates and deployments are visible immediately
+    if (ext === '.html') {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+    } else if (cleanPath.startsWith('/assets/')) {
+      // Fingerprinted assets with hash can be safely cached
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    }
+
     res.end(data);
   });
 });
