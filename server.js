@@ -19,9 +19,12 @@ const MIME_TYPES = {
   '.json': 'application/json; charset=UTF-8',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
   '.svg': 'image/svg+xml',
   '.ico': 'image/x-icon',
   '.txt': 'text/plain; charset=UTF-8',
+  '.woff': 'font/woff',
   '.woff2': 'font/woff2',
 };
 
@@ -112,9 +115,21 @@ const server = http.createServer((req, res) => {
   }
 
   // Static File Serving
-  let filePath = path.join(DIST_DIR, pathname === '/' ? 'index.html' : pathname);
+  const cleanPath = decodeURIComponent(pathname);
+  let filePath = path.join(DIST_DIR, cleanPath === '/' ? 'index.html' : cleanPath);
+
+  // If path doesn't exist directly, check if it's an SPA route or a missing static asset
   if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
-    filePath = path.join(DIST_DIR, 'index.html');
+    const hasExtension = path.extname(cleanPath) !== '';
+    if (!hasExtension) {
+      // SPA route fallback (e.g. /projects, /about)
+      filePath = path.join(DIST_DIR, 'index.html');
+    } else {
+      // Missing static asset -> return 404 instead of corrupting image/css/js with index.html
+      res.statusCode = 404;
+      res.setHeader('Content-Type', 'text/plain; charset=UTF-8');
+      return res.end(`Asset not found: ${cleanPath}`);
+    }
   }
 
   fs.readFile(filePath, (err, data) => {
@@ -122,7 +137,7 @@ const server = http.createServer((req, res) => {
       res.statusCode = 404;
       return res.end('Not found');
     }
-    const ext = path.extname(filePath);
+    const ext = path.extname(filePath).toLowerCase();
     res.setHeader('Content-Type', MIME_TYPES[ext] || 'application/octet-stream');
     res.end(data);
   });

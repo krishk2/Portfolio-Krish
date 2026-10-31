@@ -1,6 +1,12 @@
 // src/data/content.js
 // Central data store – update this to change all site content
 
+// Achievement images imported directly from src/assets so Vite bundles and resolves them across all deployment platforms
+import convolveImg from '../assets/achievements/convolve.png';
+import convolveGlassesImg from '../assets/achievements/convolve_glasses.png';
+import quantumValleyImg from '../assets/achievements/quantum_valley.png';
+import paytmImg from '../assets/achievements/paytm.jpg';
+
 export const personal = {
   name: "Krishna Koushik Padigala",
   tagline: "Multi-Agent Systems · LLM Applications · Computer Vision",
@@ -69,12 +75,12 @@ export const projects = [
     ],
     achievementImages: [
       {
-        src: "/achievements/convolve.png",
+        src: convolveImg,
         label: "Stage Award",
         caption: "Convolve 4.0 Pan-IIT Hackathon — 1st Place Award Ceremony on stage (Powered by Qdrant)",
       },
       {
-        src: "/achievements/convolve_glasses.png",
+        src: convolveGlassesImg,
         label: "Prize: Ray-Ban Meta",
         caption: "Ray-Ban Meta Wayfarer Smart Glasses won as 1st Place Prize for Masthishq",
       },
@@ -177,7 +183,7 @@ export const projects = [
     ],
     achievementImages: [
       {
-        src: "/achievements/quantum_valley.png",
+        src: quantumValleyImg,
         label: "Winners Stage & Trophy",
         caption: "Amaravati Quantum Valley Hackathon 2025 — Grand Finale Winners on stage with Trophy & ₹50,000 Cheque",
       },
@@ -246,13 +252,13 @@ export const accomplishments = [
     projectTitle: "Masthishq",
     images: [
       {
-        src: "/achievements/convolve.png",
+        src: convolveImg,
         label: "Stage Award",
         caption: "Convolve 4.0 Pan-IIT AI/ML Hackathon — 1st Place Award Ceremony on stage (Multi-Agent Systems Track, Powered by Qdrant)",
         alt: "Convolve 4.0 Pan-IIT Hackathon Award Ceremony on stage",
       },
       {
-        src: "/achievements/convolve_glasses.png",
+        src: convolveGlassesImg,
         label: "Prize: Ray-Ban Meta",
         caption: "Ray-Ban Meta Wayfarer Smart Glasses — 1st Place Prize won for Masthishq AI Assistant",
         alt: "Ray-Ban Meta Smart Glasses Prize won at Convolve 4.0",
@@ -267,7 +273,7 @@ export const accomplishments = [
     projectTitle: "QuantuSight",
     images: [
       {
-        src: "/achievements/quantum_valley.png",
+        src: quantumValleyImg,
         label: "Winners Stage & Trophy",
         caption: "Amaravati Quantum Valley Hackathon 2025 — Grand Finale Winners on stage with Trophy, Medals & ₹50,000 Cheque (IBM Quantum)",
         alt: "Amaravati Quantum Valley Hackathon 2025 Grand Finale Winners",
@@ -280,7 +286,7 @@ export const accomplishments = [
     year: "2026",
     images: [
       {
-        src: "/achievements/paytm.jpg",
+        src: paytmImg,
         label: "Hackathon Deep Work",
         caption: "Paytm Build for India Hackathon — Finalist team in deep work session building voice-enabled financial navigator at hackathon venue",
         alt: "Paytm Build for India Hackathon Finalist Team Working",

@@ -23,3 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 data/contacts.json
+
+# Explicitly ensure assets and public folders are tracked
+!src/assets/
+!src/assets/**
+!public/
+!public/**
