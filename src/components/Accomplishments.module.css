@@ -280,6 +280,68 @@
   margin-bottom: 8px;
 }
 
+.certImageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  max-height: 145px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #080808;
+  margin: 8px 0 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.certImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.certCard:hover .certImage {
+  transform: scale(1.04);
+}
+
+.certZoomBtn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #F4F4F0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.certCard:hover .certZoomBtn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.certZoomBtn:hover {
+  background: rgba(20, 20, 20, 0.95);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
 .certIssuer {
   font-family: 'Space Grotesk', monospace;
   font-size: 10px;

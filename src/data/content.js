@@ -7,6 +7,14 @@ import convolveGlassesImg from '../assets/achievements/convolve_glasses.png';
 import quantumValleyImg from '../assets/achievements/quantum_valley.png';
 import paytmImg from '../assets/achievements/paytm.jpg';
 
+// Certification images
+import certHuggingFace from '../assets/certifications/huggingface_agents.png';
+import certOracle from '../assets/certifications/oracle_foundations.png';
+import certInfosys from '../assets/certifications/infosys_deep_learning.png';
+import certKaggle from '../assets/certifications/kaggle_intro_ml.png';
+import certFreeCodeCamp from '../assets/certifications/freecodecamp_data_analysis.png';
+import certEdx from '../assets/certifications/edx_java_oop.png';
+
 export const personal = {
   name: "Krishna Koushik Padigala",
   tagline: "Multi-Agent Systems · LLM Applications · Computer Vision",
@@ -299,6 +307,7 @@ export const certifications = [
   {
     title: "AI Agents Course",
     issuer: "Hugging Face",
+    image: certHuggingFace,
     link: "https://drive.google.com/file/d/1r3sZEb5SFfspi3hUvVbGFEzBNTKoMJrJ/view?usp=sharing",
     tag: "Multi-Agent AI",
     year: "2026",
@@ -306,6 +315,7 @@ export const certifications = [
   {
     title: "Certified Foundations Associate",
     issuer: "Oracle",
+    image: certOracle,
     link: "https://brm-certview.oracle.com/ords/certview/ecertificate?ssn=OC7480841&trackId=OCI25AICFA&key=368ac6692cbd8982837975065decb19dff7473d9",
     tag: "Cloud & AI",
     year: "2026",
@@ -313,6 +323,7 @@ export const certifications = [
   {
     title: "Deep Learning",
     issuer: "Infosys",
+    image: certInfosys,
     link: "https://drive.google.com/file/d/1fRuK5r6Fa9ZaxrqHmZzZtPD_YNf9FPUa/view",
     tag: "Deep Learning",
     year: "2026",
@@ -320,6 +331,7 @@ export const certifications = [
   {
     title: "Intro to Machine Learning",
     issuer: "Kaggle",
+    image: certKaggle,
     link: "https://www.kaggle.com/learn/certification/koushikpadigala/intro-to-machine-learning",
     tag: "Machine Learning",
     year: "2025",
@@ -327,6 +339,7 @@ export const certifications = [
   {
     title: "Data Analysis with Python",
     issuer: "FreeCodeCamp",
+    image: certFreeCodeCamp,
     link: "https://freecodecamp.org/certification/fcc4d5b9671-b2f0-4d83-8069-d218fcc26463/data-analysis-with-python-v7",
     tag: "Python & Analytics",
     year: "2025",
@@ -334,6 +347,7 @@ export const certifications = [
   {
     title: "Java OOP",
     issuer: "edX",
+    image: certEdx,
     link: "https://courses.edx.org/certificates/1c23caa5ca2d48949183475ac66837f6",
     tag: "Object-Oriented Programming",
     year: "2025",

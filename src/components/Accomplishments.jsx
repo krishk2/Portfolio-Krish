@@ -130,7 +130,7 @@ function AccomplishmentRow({ item, index, onOpenImage }) {
   );
 }
 
-function CertificationCard({ cert, index }) {
+function CertificationCard({ cert, index, onOpenImage }) {
   const cardRef = useAnimeOnView(
     (el) => {
       animate(el, {
@@ -158,6 +158,30 @@ function CertificationCard({ cert, index }) {
         <span className={styles.certIssuer}>{cert.issuer}</span>
         <span className={styles.certArrow}>↗</span>
       </div>
+
+      {cert.image && (
+        <div className={styles.certImageContainer}>
+          <img
+            src={cert.image}
+            alt={`${cert.issuer} — ${cert.title} Certificate`}
+            className={styles.certImage}
+            loading="lazy"
+          />
+          <button
+            type="button"
+            className={styles.certZoomBtn}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (onOpenImage) onOpenImage(index);
+            }}
+            title={`View full certificate for ${cert.title}`}
+          >
+            <span>🔍</span> View
+          </button>
+        </div>
+      )}
+
       <h4 className={styles.certTitle}>{cert.title}</h4>
       <div className={styles.certBottom}>
         <span className={styles.certTag}>{cert.tag}</span>
@@ -245,7 +269,20 @@ export default function Accomplishments() {
 
           <div className={styles.certGrid}>
             {certifications.map((cert, i) => (
-              <CertificationCard key={cert.title + cert.issuer} cert={cert} index={i} />
+              <CertificationCard
+                key={cert.title + cert.issuer}
+                cert={cert}
+                index={i}
+                onOpenImage={(certIdx) => {
+                  const certList = certifications.map((c) => ({
+                    src: c.image,
+                    label: c.issuer,
+                    caption: `${c.issuer} — ${c.title} Certificate (${c.year})`,
+                    alt: `${c.issuer} ${c.title}`,
+                  }));
+                  handleOpenImage(certList[certIdx], certList, certIdx);
+                }}
+              />
             ))}
           </div>
         </div>
