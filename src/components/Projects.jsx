@@ -5,7 +5,7 @@ import { projects } from '../data/content';
 import { useAnimeOnView } from '../hooks/useAnimeOnView';
 import styles from './Projects.module.css';
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project, index, onOpenVideo }) {
   const cardRef = useRef(null);
   const descRef = useRef(null);
   const isExpanded = useRef(false);
@@ -69,7 +69,7 @@ function ProjectCard({ project, index }) {
   };
 
   const handleCardClick = (e) => {
-    if (e.target.closest('a')) return;
+    if (e.target.closest('a') || e.target.closest('button')) return;
     if (isExpanded.current) {
       collapse();
     } else {
@@ -88,7 +88,15 @@ function ProjectCard({ project, index }) {
       onClick={handleCardClick}
     >
       <div>
-        <span className={styles.index}>{String(index + 1).padStart(2, '0')}</span>
+        <div className={styles.metaRow}>
+          <span className={styles.index}>{String(index + 1).padStart(2, '0')}</span>
+          {project.badge && <span className={styles.cardBadge}>{project.badge}</span>}
+          {project.video && (
+            <span className={styles.videoIndicator} title="In-browser video demo available">
+              <span className={styles.videoIndicatorDot} /> Video
+            </span>
+          )}
+        </div>
 
         <div className={styles.top}>
           <div>
@@ -110,19 +118,23 @@ function ProjectCard({ project, index }) {
           ))}
         </div>
         <div className={styles.links}>
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.link}
-              onClick={(e) => e.stopPropagation()}
-              title="View Source Code on GitHub"
+          {project.video && (
+            <button
+              type="button"
+              className={styles.linkVideo}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (onOpenVideo) onOpenVideo(project);
+                else {
+                  window.dispatchEvent(new CustomEvent('open-video', { detail: project }));
+                }
+              }}
+              title={`Watch ${project.title} Video Demo in website player`}
             >
-              Source Code ↗
-            </a>
+              <span className={styles.playIcon}>▶</span> Watch Demo
+            </button>
           )}
-          {project.demo && (
+          {project.demo && !project.video && (
             <a
               href={project.demo}
               target="_blank"
@@ -146,13 +158,25 @@ function ProjectCard({ project, index }) {
               Live App ↗
             </a>
           )}
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.link}
+              onClick={(e) => e.stopPropagation()}
+              title="View Source Code on GitHub"
+            >
+              Source Code ↗
+            </a>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-export default function Projects() {
+export default function Projects({ onOpenVideo }) {
   const titleRef = useAnimeOnView((el) =>
     animate(el, { opacity: [0, 1], translateY: [20, 0], duration: 600, ease: 'out(4)' })
   );
@@ -160,16 +184,40 @@ export default function Projects() {
     animate(el, { opacity: [0, 1], translateY: [25, 0], duration: 700, ease: 'out(4)' })
   );
 
+  const handleWatchAll = () => {
+    const firstVideo = projects.find((p) => p.video) || projects[0];
+    if (onOpenVideo) onOpenVideo(firstVideo);
+    else window.dispatchEvent(new CustomEvent('open-video', { detail: firstVideo }));
+  };
+
   return (
     <section id="projects">
       <div className="container">
-        <p className="section-label" ref={titleRef} style={{ opacity: 0 }}>Projects</p>
-        <h2 className={styles.sectionHeading} ref={headingRef} style={{ opacity: 0 }}>
-          Things I've built
-        </h2>
+        <div className={styles.sectionHeaderRow}>
+          <div>
+            <p className="section-label" ref={titleRef} style={{ opacity: 0 }}>Projects</p>
+            <h2 className={styles.sectionHeading} ref={headingRef} style={{ opacity: 0 }}>
+              Things I've built
+            </h2>
+          </div>
+          <button
+            type="button"
+            className={styles.watchAllBtn}
+            onClick={handleWatchAll}
+            title="Open in-website video player to watch all project demos"
+          >
+            <span className={styles.playIconHeader}>▶</span> Watch Video Demos
+          </button>
+        </div>
+
         <div className={styles.grid}>
           {projects.map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} />
+            <ProjectCard
+              key={project.title}
+              project={project}
+              index={i}
+              onOpenVideo={onOpenVideo}
+            />
           ))}
         </div>
       </div>

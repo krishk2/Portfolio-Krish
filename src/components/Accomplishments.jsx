@@ -1,6 +1,6 @@
 // src/components/Accomplishments.jsx
 import { animate } from 'animejs';
-import { accomplishments, certifications } from '../data/content';
+import { accomplishments, certifications, projects } from '../data/content';
 import { useAnimeOnView } from '../hooks/useAnimeOnView';
 import styles from './Accomplishments.module.css';
 
@@ -33,6 +33,18 @@ function AccomplishmentRow({ item, index }) {
     });
   };
 
+  const handleWatchVideo = (e) => {
+    e.stopPropagation();
+    const targetProject = projects.find((p) => p.title === item.projectTitle) || {
+      title: item.title,
+      subtitle: item.detail,
+      video: item.video,
+      driveFolder: item.folder,
+      badge: "1st Place Convolve 4.0",
+    };
+    window.dispatchEvent(new CustomEvent('open-video', { detail: targetProject }));
+  };
+
   return (
     <div
       ref={rowRef}
@@ -48,7 +60,31 @@ function AccomplishmentRow({ item, index }) {
           <p className={styles.rowDetail}>{item.detail}</p>
         </div>
       </div>
-      <span className={styles.year}>{item.year}</span>
+      <div className={styles.rowRight}>
+        {item.video && (
+          <button
+            type="button"
+            className={styles.watchBtn}
+            onClick={handleWatchVideo}
+            title="Watch Convolve 4.0 Winning Demo Video in website player"
+          >
+            <span>▶</span> Watch Demo
+          </button>
+        )}
+        {item.folder && (
+          <a
+            href={item.folder}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.folderBtn}
+            onClick={(e) => e.stopPropagation()}
+            title="Open Google Drive folder with snapshots & documentation"
+          >
+            Drive Folder ↗
+          </a>
+        )}
+        <span className={styles.year}>{item.year}</span>
+      </div>
     </div>
   );
 }

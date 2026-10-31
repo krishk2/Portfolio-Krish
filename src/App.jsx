@@ -1,5 +1,5 @@
 // src/App.jsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './styles/global.css';
 import Cursor from './components/Cursor';
 import Navbar from './components/Navbar';
@@ -10,9 +10,21 @@ import Projects from './components/Projects';
 import Accomplishments from './components/Accomplishments';
 import Contact from './components/Contact';
 import StartupAnimation from './components/StartupAnimation';
+import VideoModal from './components/VideoModal';
 
 export default function App() {
   const [showStartup, setShowStartup] = useState(true);
+  const [activeVideoProject, setActiveVideoProject] = useState(null);
+
+  useEffect(() => {
+    const handleOpenVideo = (e) => {
+      if (e.detail) {
+        setActiveVideoProject(e.detail);
+      }
+    };
+    window.addEventListener('open-video', handleOpenVideo);
+    return () => window.removeEventListener('open-video', handleOpenVideo);
+  }, []);
 
   return (
     <>
@@ -25,10 +37,17 @@ export default function App() {
         <Hero isReady={!showStartup} />
         <About />
         <Experience />
-        <Projects />
+        <Projects onOpenVideo={setActiveVideoProject} />
         <Accomplishments />
         <Contact />
       </main>
+
+      {activeVideoProject && (
+        <VideoModal
+          project={activeVideoProject}
+          onClose={() => setActiveVideoProject(null)}
+        />
+      )}
     </>
   );
 }

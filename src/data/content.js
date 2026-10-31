@@ -52,13 +52,16 @@ export const experience = [
 export const projects = [
   {
     title: "Masthishq",
-    subtitle: "AI Memory Assistant",
+    subtitle: "AI Memory Assistant · Convolve 4.0 Winner",
     description:
-      "Multimodal AI agent designed as an external cognitive memory for Alzheimer's & Dementia patients. Integrates FaceNet and YOLOv8 for face and object recognition, Qdrant vector database for episodic memory retrieval, and Groq-hosted Llama-3 with Whisper for real-time contextual voice conversations.",
+      "Multimodal AI agent designed as an external cognitive memory for Alzheimer's & Dementia patients. Integrates FaceNet and YOLOv8 for face and object recognition, Qdrant vector database for episodic memory retrieval, and Groq-hosted Llama-3 with Whisper for real-time contextual voice conversations. Built by Team Twilight and awarded 1st Place at Convolve 4.0 Pan-IIT Hackathon.",
     tags: ["FastAPI", "React", "Qdrant", "Llama-3", "Groq", "YOLOv8", "FaceNet"],
     github: "https://github.com/krishk2/Masthishq",
-    demo: "https://drive.google.com/file/d/1sXt4R2UMOnmO0yUck7cl9stCuMtTe2Mk/view?usp=drive_link",
+    video: "https://drive.google.com/file/d/1mq36FTSPY35Hbm681oE8DaL3NUPv87A6/preview",
+    demo: "https://drive.google.com/file/d/1mq36FTSPY35Hbm681oE8DaL3NUPv87A6/view?usp=sharing",
+    driveFolder: "https://drive.google.com/drive/u/4/folders/1MO1aNhguOguY9YpZB4rRInw50-J_40JM",
     live: "https://masthishq-frontend.onrender.com/",
+    badge: "1st Place Convolve 4.0",
   },
   {
     title: "Meeting Prep Agent",
@@ -67,8 +70,10 @@ export const projects = [
       "Autonomous sales intelligence agent built for the Hindsight Hackathon. Formulates contextual pre-meeting briefs from prior interactions, conducts post-call sentiment and action-item extraction with Groq LLM, drafts follow-up emails in Gmail, and continuously adapts to rep preferences through Hindsight's memory learning loop.",
     tags: ["FastAPI", "React", "Hindsight", "Groq LLM", "Gmail API", "Google Calendar"],
     github: "https://github.com/Pasalavijay799/meeting-prep-agent",
+    video: "https://drive.google.com/file/d/1sXt4R2UMOnmO0yUck7cl9stCuMtTe2Mk/preview",
     demo: "https://drive.google.com/file/d/1sXt4R2UMOnmO0yUck7cl9stCuMtTe2Mk/view?usp=drive_link",
     live: null,
+    badge: "Hindsight Hackathon",
   },
   {
     title: "FinAgentX",
@@ -77,8 +82,10 @@ export const projects = [
       "4-agent banking workflow automating loan application, data collection, financial verification, underwriting, and risk approval workflows.",
     tags: ["CrewAI", "Node.js", "WebSockets", "Python", "Multi-Agent"],
     github: "https://github.com/krishk2/FinAgentX/tree/main",
+    video: "https://drive.google.com/file/d/1aWEQlgwh4NrwrSyISKLAJHhl3UfoKbm9/preview",
     demo: "https://drive.google.com/file/d/1aWEQlgwh4NrwrSyISKLAJHhl3UfoKbm9/view?usp=sharing",
     live: null,
+    badge: "Multi-Agent Architecture",
   },
   {
     title: "VoiceLab: TTS & ASR",
@@ -88,7 +95,8 @@ export const projects = [
     tags: ["Neural TTS", "Voice Cloning", "Hugging Face", "Docker", "MongoDB", "Audio AI"],
     github: "https://github.com/krishk2/VoiceLab--TTS-and-ASR",
     demo: "https://voice-lab-gqcl.onrender.com",
-    live: null,
+    live: "https://voice-lab-gqcl.onrender.com",
+    badge: "Neural Speech Engine",
   },
   {
     title: "QuantuSight",
@@ -98,7 +106,8 @@ export const projects = [
     tags: ["IBM Quantum", "Qiskit", "Jupyter", "Machine Learning", "Quantum Computing"],
     github: "https://github.com/krishk2/quantusight",
     demo: "https://quantu-sight-accelerated.onrender.com",
-    live: null,
+    live: "https://quantu-sight-accelerated.onrender.com",
+    badge: "Amaravati Hackathon Winner",
   },
   {
     title: "Enterprise Email Classifier",
@@ -109,6 +118,7 @@ export const projects = [
     github: "https://github.com/krishk2/Enterprise-email-classifier",
     demo: null,
     live: "https://enterprise-email-classifier.streamlit.app/",
+    badge: "Enterprise NLP",
   },
   {
     title: "Veritas.AI",
@@ -119,19 +129,25 @@ export const projects = [
     github: "https://github.com/krishk2/Veritas.AI",
     demo: null,
     live: null,
+    badge: "Multi-Agent Fact Check",
   },
 ];
 
 export const accomplishments = [
   {
     title: "1st Place — Convolve 4.0 Pan-IIT Hackathon",
-    detail: "Multi-Agent Systems Track · 8,000+ teams",
+    detail: "Multi-Agent Systems Track · 8,000+ teams · Team Twilight (Masthishq)",
     year: "2026",
+    video: "https://drive.google.com/file/d/1mq36FTSPY35Hbm681oE8DaL3NUPv87A6/preview",
+    folder: "https://drive.google.com/drive/u/4/folders/1MO1aNhguOguY9YpZB4rRInw50-J_40JM",
+    projectTitle: "Masthishq",
   },
   {
     title: "Winner — Amaravati Quantum Valley Hackathon",
-    detail: "Built live job-tracking dashboard for IBM Quantum",
+    detail: "Built live job-tracking dashboard for IBM Quantum (QuantuSight)",
     year: "2026",
+    link: "https://quantu-sight-accelerated.onrender.com",
+    projectTitle: "QuantuSight",
   },
   {
     title: "Finalist — Paytm Build for India Hackathon",

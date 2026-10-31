@@ -66,6 +66,57 @@
   color: #666;
 }
 
+.rowRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.watchBtn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #000;
+  background: #F4F4F0;
+  border: 1px solid #F4F4F0;
+  padding: 5px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+}
+
+.watchBtn:hover {
+  background: transparent;
+  color: #F4F4F0;
+}
+
+.folderBtn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  background: transparent;
+  border: 1px solid #282828;
+  padding: 5px 12px;
+  border-radius: 2px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.folderBtn:hover {
+  color: #F4F4F0;
+  border-color: #555;
+  background: #111;
+}
+
 .year {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 13px;
